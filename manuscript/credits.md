@@ -36,7 +36,7 @@ Client side projects
  - [underscore](http://underscorejs.org/)
  - [ramda](http://ramda.github.io/ramdocs/docs/)
  - [fancytree](http://wwwendt.de/tech/fancytree/demo/)
- - moment
+ - [moment](http://momentjs.com/)
  - uuid
  - string
  - cookies
