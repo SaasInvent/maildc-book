@@ -40,7 +40,8 @@ Client side projects
  - string
  - cookies
  - jquery.cookies
- - 
+ - swfobject
+ - Flex SDK
 
 
 
