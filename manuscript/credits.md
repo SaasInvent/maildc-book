@@ -20,6 +20,7 @@ MailDC makes use of the following open source projects:
  - [Mongoose](http://mongoosejs.com/)
  - [Q Promises](http://documentup.com/kriskowal/q/)
  - [gulp](http://gulpjs.com/)
+ - [node-uuid](https://github.com/broofa/node-uuid)
 
 
 
@@ -37,10 +38,9 @@ Client side projects
  - [ramda](http://ramda.github.io/ramdocs/docs/)
  - [fancytree](http://wwwendt.de/tech/fancytree/demo/)
  - [moment](http://momentjs.com/)
- - uuid
- - string
- - cookies
- - jquery.cookies
+ - [uuid](https://github.com/broofa/node-uuid)
+ - [string](http://stringjs.com/)
+ - [jquery.cookies](https://github.com/carhartl/jquery-cookie)
  - swfobject
  - Flex SDK
  - jquery.country.Selector
