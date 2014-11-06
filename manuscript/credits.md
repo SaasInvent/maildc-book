@@ -30,12 +30,12 @@ Client side projects
  MailDC makes use of the following open source projects:
 
  - [Backbone](http://backbonejs.org/)
- - jquery
- - jquery-ui
+ - [jquery](http://jquery.com/)
+ - [jquery-ui](http://jqueryui.com/)
+ - [Bootstrap](http://getbootstrap.com/)
  - underscore
  - ramda
  - fancytree
- - bootstrap
  - moment
  - uuid
  - string
