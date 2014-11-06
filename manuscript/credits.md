@@ -33,9 +33,9 @@ Client side projects
  - [jquery](http://jquery.com/)
  - [jquery-ui](http://jqueryui.com/)
  - [Bootstrap](http://getbootstrap.com/)
- - underscore
- - ramda
- - fancytree
+ - [underscore](http://underscorejs.org/)
+ - [ramda](http://ramda.github.io/ramdocs/docs/)
+ - [fancytree](http://wwwendt.de/tech/fancytree/demo/)
  - moment
  - uuid
  - string
