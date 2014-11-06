@@ -4,7 +4,7 @@ MailDC is built upon other open source code projects. Without these projects Mai
 
 I hereby express my gratitude to the open source community! 
 
-The following list is simply divided into server side projects and client side projects. Feel free to contact MailDC if we forgot your project! (our excuses in advance, sometimes the most obvious is forgotten : did I mention this, MailDC is written in CoffeeScript!)
+The following list is simply divided into server side projects and client side projects. Feel free to contact MailDC if we forgot your project! (our excuses in advance, sometimes the most obvious is forgotten : did I mention this, MailDC is written in [CoffeeScript](http://coffeescript.org/) !)
 
 
 
@@ -29,7 +29,7 @@ Client side projects
 
  MailDC makes use of the following open source projects:
 
- - Backbone
+ - [Backbone](http://backbonejs.org/)
  - jquery
  - jquery-ui
  - underscore
