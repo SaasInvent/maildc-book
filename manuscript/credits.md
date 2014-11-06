@@ -17,8 +17,9 @@ MailDC makes use of the following open source projects:
  - [Express](http://expressjs.com/)
  - [Jade](http://jade-lang.com/)
  - [MongoDB](http://www.mongodb.org/)
- - Q Promises
- - gulp
+ - [Mongoose](http://mongoosejs.com/)
+ - [Q Promises](http://documentup.com/kriskowal/q/)
+ - [gulp](http://gulpjs.com/)
 
 
 
