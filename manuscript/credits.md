@@ -45,7 +45,7 @@ Client side projects
  - [Flex SDK](http://www.adobe.com/devnet/flex/flex-sdk-download.html)
  - [jquery.country.Selector](http://sourceforge.net/projects/jquerycountryse/)
  - [alertify](http://fabien-d.github.io/alertify.js/)
- - 
+ - [Jasmine](http://jasmine.github.io/)
 
 
 
