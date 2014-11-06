@@ -42,6 +42,9 @@ Client side projects
  - jquery.cookies
  - swfobject
  - Flex SDK
+ - jquery.country.Selector
+ - alertify
+ - 
 
 
 
