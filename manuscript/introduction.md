@@ -17,6 +17,8 @@ Put it the other way around, MailDC addresses the following threats:
 
 In order to be able to achieve this, it is necessary that each MailDC user accepts to forward messages addressed to another MailDC user : emails have to be relayed for receivers that are not online the moment the sender sent their message!
 
+MailDC is an open source project. This will allow
+
 
 
 > Written with [StackEdit](https://stackedit.io/).
