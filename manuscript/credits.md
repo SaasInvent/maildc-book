@@ -16,14 +16,29 @@ MailDC makes use of the following open source projects:
  - Node
  - Express
  - MongoDB
- - Mongoose
+ - Q Promises
+
+se
+ - List item
+
+s
+
 
 
 Client side projects
 --------------------
 
  MailDC makes use of the following open source projects:
- 
+
+ - Backbone
+ - jquery
+ - jquery-ui
+ - underscore
+ - ramda
+ - fancytree
+ - bootstrap
+ - jade
+ - 
 
 cts
 
