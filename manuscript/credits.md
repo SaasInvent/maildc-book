@@ -15,8 +15,10 @@ MailDC makes use of the following open source projects:
 
  - Node
  - Express
+ - Jade
  - MongoDB
  - Q Promises
+ - gulp
 
 
 
@@ -33,12 +35,13 @@ Client side projects
  - ramda
  - fancytree
  - bootstrap
- - jade
+ - moment
+ - uuid
+ - string
+ - cookies
+ - jquery.cookies
  - 
 
-cts
-
-This chapter contains 
 
 
 > Written with [StackEdit](https://stackedit.io/).
