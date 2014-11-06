@@ -13,9 +13,9 @@ Server side projects
 
 MailDC makes use of the following open source projects:
 
- - Node
- - Express
- - Jade
+ - [Node](http://nodejs.org/)
+ - [Express](http://expressjs.com/)
+ - [Jade](http://jade-lang.com/)
  - MongoDB
  - Q Promises
  - gulp
