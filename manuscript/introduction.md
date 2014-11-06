@@ -3,7 +3,7 @@
 MailDC is a decentralized mail client
 
  *  no mails are stored on a centralized server
- * every mail is crypted
+ * every email is encrypted
  * your mails are stored on your computer in flash cookies
  * it is your responsibility to secure the access to your computer
 
