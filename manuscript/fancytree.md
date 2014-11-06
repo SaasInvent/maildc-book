@@ -8,13 +8,13 @@ The tree data is stored in an array of nested objects. For example
 
     source: [
     {title: "Node 1", key: "1"},
-    {title: "Folder 2", key: "2", folder: true, children: [
+    {title: "Folder 2", key: "2", folder: true, children:               [    
       {title: "Node 2.1", key: "3"},
       {title: "Node 2.2", key: "4"}
-    ]}
+      ]}
     ],
     ...
   
-
+A good [documentation](http://wwwendt.de/tech/fancytree/demo/index.html) can be found here.
 
 > Written with [StackEdit](https://stackedit.io/).
