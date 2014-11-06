@@ -44,7 +44,7 @@ Client side projects
  - [swfobject](https://code.google.com/p/swfobject/)
  - [Flex SDK](http://www.adobe.com/devnet/flex/flex-sdk-download.html)
  - [jquery.country.Selector](http://sourceforge.net/projects/jquerycountryse/)
- - alertify
+ - [alertify](http://fabien-d.github.io/alertify.js/)
  - 
 
 
