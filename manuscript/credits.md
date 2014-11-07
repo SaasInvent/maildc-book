@@ -40,15 +40,15 @@ Client side projects
  - [moment](http://momentjs.com/)
  - [uuid](https://github.com/broofa/node-uuid)
  - [string](http://stringjs.com/)
- - [jquery.cookies](https://github.com/carhartl/jquery-cookie)
+ - [jQuery cookie plugin](https://github.com/carhartl/jquery-cookie)
  - [swfobject](https://code.google.com/p/swfobject/)
  - [Flex SDK](http://www.adobe.com/devnet/flex/flex-sdk-download.html)
  - [jquery.country.Selector](http://sourceforge.net/projects/jquerycountryse/)
  - [alertify](http://fabien-d.github.io/alertify.js/)
  - [Jasmine](http://jasmine.github.io/)
  -  [forge#rsa](http://point-at-infinity.org/jsaes/)
- - [jQuery UI Layout](http://plugins.jquery.com/layout/)
- - [jQuery tablesorter](http://tablesorter.com/docs/)
+ - [jQuery UI Layout plugin](http://plugins.jquery.com/layout/)
+ - [jQuery tablesorter plugin](http://tablesorter.com/docs/)
 
 
 > Written with [StackEdit](https://stackedit.io/).
