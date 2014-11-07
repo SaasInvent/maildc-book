@@ -47,7 +47,8 @@ Client side projects
  - [alertify](http://fabien-d.github.io/alertify.js/)
  - [Jasmine](http://jasmine.github.io/)
  -  [forge#rsa](http://point-at-infinity.org/jsaes/)
-
+ - [jQuery UI Layout](http://plugins.jquery.com/layout/)
+ - [jQuery tablesorter](http://tablesorter.com/docs/)
 
 
 > Written with [StackEdit](https://stackedit.io/).
