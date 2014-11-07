@@ -3,7 +3,7 @@
 MailDC email client layout heavily relies on the following open source projects
 
  - [jquery UI Layout](http://plugins.jquery.com/layout/)
- - jquery tablesorter
+ - [jquery tablesorter](http://tablesorter.com/docs/)
  - fancytree
 
 
