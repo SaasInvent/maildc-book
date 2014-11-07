@@ -11,4 +11,10 @@ In an OOP approach we should create two classes:
  - Folder
  - Email
 
+These two classes should be implemented in JavaScript and in ActionScript.
+
+
+
+
+
 In a later version we might develop an address book using the ldif/vcard format.
