@@ -9,13 +9,13 @@ Encryption in MailDc
 
 Two types of encryption are used in MailDc
 
- - symetric key encryption and 
- - asymetric key encryption
+ - symmetric key encryption and 
+ - asymmetric key encryption
 
-The two types of encryption serve two differents objectives:
+The two types of encryption serve two different objectives:
 
-Symetric key encryptions is used for large data encryption.
- Asymetric key encryption is used to encrypt the symetric key!
+Symmetric key encryption is used for large data encryption.
+ Asymmetric key encryption is used to encrypt the symmetric key!
 
 Encryption in MailDC is always a two step process :
 
@@ -26,10 +26,10 @@ Encryption in MailDC is always a two step process :
 
 
 
-Symetric key encryption
+Symmetric key encryption
 -----------------------
 
-Symetric key encryption in MailDC is done with the “Advanced Encryption Standard” (AES). The encryption is done directly on the browser with a unique encryption key that is created on the fly everytime MailDC needs to encrypt a message. To encrypt our data (messages, agenda, contacts) we are using the following libraries
+Symmetric key encryption in MailDC is done with the “Advanced Encryption Standard” (AES). The encryption is done directly on the browser with a unique encryption key that is created on the fly every-time MailDC needs to encrypt a message. To encrypt our data (messages, agenda, contacts) we are using the following libraries
 
 
  - [jsaes](http://point-at-infinity.org/jsaes/) (probably not used)
@@ -72,12 +72,12 @@ To create a 256 bit key your would call this function as follows
 256-bit 64 digit key $> alert("256-bit:" + generateHexString(64));
 
 
-Asymetric encryption
+Asymmetric encryption
 --------------------
 
 Once our data has been encrypted, we need to encrypt the key as well, otherwise our data will not be encrypted for very long…
 
-Asymetric key encryption works with two keys
+Asymmetric key encryption works with two keys:
 
 
  - a public key 
@@ -95,16 +95,17 @@ node-rsa
 Encryption workflow in MailDC
 -----------------------------
 
-MailDC uses asymetric key encryption. One of the problems with asymetric key encryptions is the distribution of the public and above all of the private key. 
+MailDC uses asymmetric key encryption. One of the problems with asymmetric key encryption is the distribution of the public and above all of the private key. 
 How does one asssure that no evil minded person intercepts our private key during delivery? Or worse, makes a copy of it, modifies it?
 
 The answer to that question is, you simply don’t deliver the private key!
 
 MailDC will create the private/public key-pair on the browser and will only send back to the server the public key. The private key will never be sent over the Internet! The private key will be stored on the client computer. That’s it!
 
-The creation of the private/public key pair is done when a user signs up for MailDC. After confirmation of the sign-up message, the key-pair is created and the public key is sent back to the server.
+The creation of the private/public key pair is done when a user signs up for MailDC. After confirmation of the sign-up message, the key-pair is created and the public key is sent back to the server. One realistic example:
 
 Harry writes a letter to Sally
+------------------------------
 
 Once Harry has signed in to MailDC, he starts to write a letter to Sally. As soon as he clicks on the “Send” button, MailDC takes over. 
 
@@ -121,14 +122,14 @@ Once Sally receives Harry’s message she then can decrypt it using the key that
 Message database encryption
 ---------------------------
 
-All the messages are stored in a file-based database. MailDC uses what is called a “local shared object” or “flash-cookie” (a Macromedia/Adobe technologie).
+All the messages are stored in a file-based database. MailDC uses what is called a “local shared object” or “flash-cookie” (a Macromedia/Adobe technology).
 
 In the mail delivery process, so far in our discussion, we have found a solution for two threats:
 
 the node (server) : no messages on the server
-the connecion : everything is encrypted
+the connection : everything is encrypted
 
-Which leaves us with a third threat wich is the client box. What if your laptop gets stolen?
+Which leaves us with a third threat which is the client box. What if your laptop gets stolen?
 
 To address this problem, MailDC needs to encrypt the data stored in its database. We’ll do this with symetric encryption.
 
@@ -136,7 +137,7 @@ During the sign-up process, every user will get a symetric key which will be enc
 
 During the login process, this key, encrypted with the public key of the user, will be sent to the client. It’ll be decrypted with the private key of the user, and then used for encryption / decryption of the data stored in the local database.
 
-If your laptops gets stolen, all your data are encrypted with a key that is stored on the server! If the server gets hacked, there will be no messages on the server and only the public key of the user.
+If your laptop gets stolen, all your data are encrypted with a key that is stored on the server! If the server gets hacked, there will be no messages on the server and only the public key of the user.
 
 
 > Written with [StackEdit](https://stackedit.io/).
