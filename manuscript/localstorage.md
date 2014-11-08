@@ -2,7 +2,18 @@
 
 All the client data will be stored locally using "local shared objects" LSO.
 
-In order to achieve this, we will rely on Flex swf objects.
+In order to achieve this, we will rely on Flex swf objects for persistent storage.
+
+We will also use [LokiJS](http://lokijs.org/?utm_source=javascriptweekly#/) a fast, in-memory document-oriented data store for node.js and browser.
+
+MailDC will load data from the LSO into the LokiJS data-store.
+
+    loadJSON( serializedDB )
+    
+This method takes a json string and loads the database from it. Useful if you want to persist your database somewhere on the cloud and re-initialize it with an ajax call returning JSON.
+
+>arguments	serializedDB: the JSON string to load into the db
+
 
 ## The Flex SDK ##
 First of all you'll need to download the [Flex SDK](http://www.adobe.com/devnet/flex/flex-sdk-download.html).
