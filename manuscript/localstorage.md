@@ -15,6 +15,41 @@ This method takes a json string and loads the database from it. Useful if you wa
 >arguments	serializedDB: the JSON string to load into the db
 
 
+Document class
+--------------
+
+A document is just a json object. Once saved the document gets an id and objType property equal to that of the collection the document belongs to.
+
+Collection class
+----------------
+
+>insert( obj )
+
+Each record in the database is a document. A document is created through the document() method of the collection class. You can take any object and store it in the collection. While like all nosql databases there's no rule on how documents should be structured it just is good practice to put documents with identical structures in the same collection. 
+Note!: if you are trying to insert an object that has already a property 'id', then that property will be renamed to 'originalId', and id will become the lokijs id. 
+For example:
+childrenOfLoki.document({ name:'Sleipnir', legs: 8 }); 
+or
+childrenOfLoki.document([{ name:'Sleipnir', legs: 8 }, { name: 'Fenrir', legs: 4 }]);
+
+arguments	obj: the document to be saved in the collection, or an array of objects
+returns	document: the document with an automatically generated id.
+update( obj )
+
+Updating the document is done by simply updating the properties of a document as the collection only holds a reference to the original object. When you call update on an object though you force a resync of the indexes of the collection.
+
+>arguments	obj: the document to be updated in the collection, or an array of objects
+returns	document: the document itself.
+remove( obj )
+Removes a document from the collection.
+arguments	obj: the document to be removed from the collection.
+
+
+
+
+
+
+
 ## The Flex SDK ##
 First of all you'll need to download the [Flex SDK](http://www.adobe.com/devnet/flex/flex-sdk-download.html).
 
