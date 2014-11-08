@@ -46,9 +46,9 @@ Client side projects
  - [jquery.country.Selector](http://sourceforge.net/projects/jquerycountryse/)
  - [alertify](http://fabien-d.github.io/alertify.js/)
  - [Jasmine](http://jasmine.github.io/)
- -  [forge#rsa](http://point-at-infinity.org/jsaes/)
+ - [forge#rsa](http://point-at-infinity.org/jsaes/)
  - [jQuery UI Layout plugin](http://plugins.jquery.com/layout/)
  - [jQuery tablesorter plugin](http://tablesorter.com/docs/)
+ - [LokiJS](http://lokijs.org/?utm_source=javascriptweekly#/)
 
 
-> Written with [StackEdit](https://stackedit.io/).
