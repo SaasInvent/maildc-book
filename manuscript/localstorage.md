@@ -1,4 +1,5 @@
-#Local storage
+Local storage
+=============
 
 All the client data will be stored locally using "local shared objects" LSO.
 
