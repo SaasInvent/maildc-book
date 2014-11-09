@@ -28,11 +28,13 @@ Collection class
 Each record in the database is a document. A document is created through the document() method of the collection class. You can take any object and store it in the collection. While like all nosql databases there's no rule on how documents should be structured it just is good practice to put documents with identical structures in the same collection. 
 Note!: if you are trying to insert an object that has already a property 'id', then that property will be renamed to 'originalId', and id will become the lokijs id. 
 For example:
-childrenOfLoki.document({ name:'Sleipnir', legs: 8 }); 
-or
-childrenOfLoki.document([{ name:'Sleipnir', legs: 8 }, { name: 'Fenrir', legs: 4 }]);
 
-arguments	obj: the document to be saved in the collection, or an array of objects
+		   childrenOfLoki.document({ name:'Sleipnir', legs: 8 }); 
+or
+
+	childrenOfLoki.document([{ name:'Sleipnir', legs: 8 }, { name: 'Fenrir', legs: 4 }]);
+
+	arguments	obj: the document to be saved in the collection, or an array of objects
 returns	document: the document with an automatically generated id.
 update( obj )
 
