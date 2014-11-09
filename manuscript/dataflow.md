@@ -9,7 +9,7 @@ This chapter describes the data flow between these two data stores.
 
 ## In memory data store ##
 
-Once the page page is ready ($.documentready), MailDC fetches its email data from the persistent storage into memory.
+Once the web page page is ready ($.documentReady()), MailDC loads its email data from the persistent storage into memory.
 
 
 ## Persistent data store ##
