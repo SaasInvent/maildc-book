@@ -119,3 +119,39 @@ Note, when an item is removed, all the indexes of the other items in the collect
 	collection.removeItemAt( 2 );
 	// get the index of "E"
 	trace( collection.getItemIndex("E") ); // returns 3
+
+
+## Filtering a Collection ##
+
+
+private function filterAge30(item:Object):Boolean{
+var age30:Boolean = false;
+
+if (item.age == 30) {
+age30 = true
+}
+
+return age30;
+}
+
+private function doFilter():void{
+myAC.filterFunction = filterAge30;
+myAC.refresh();
+}
+
+
+
+Another example
+
+private function filterData(event:ItemClickEvent):void {
+				if(event.label == "Managers Only"){
+					_employees.filterFunction = filterManagers;
+				} else {
+					_employees.filterFunction = null;
+				}
+				// refresh the data
+				_employees.refresh();
+			}
+			private function filterManagers(item:Object):Boolean {
+				return item.isManager;
+			}
