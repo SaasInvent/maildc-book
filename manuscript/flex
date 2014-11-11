@@ -2,21 +2,30 @@
 
 We will be using Apache Flex
 
-Ant-based installer
+## Installation Instructions ##
 
 The Ant-based installer doesn't require AIR to be installed, or use the installer app, and is the preferred method of install on Linux.
-Download the binary package (any release after 4.12) from http://flex.apache.org/download-binaries.html and unpack it.
-wget https://builds.apache.org/job/flex-sdk_release/lastSuccessfulBuild/artifact/out/apache-flex-sdk-4.12.0-bin.tar.gz
-tar zxvf apache-flex-sdk-4.12.0-bin.tar.gz
-Now enter the unpacked directory and run the installer. You will need to tell it to download the last version of the AIR SDK that ran on Linux. You can leave this argument off on other platforms.
-cd apache-flex-sdk-4.12.0-bin/
-ant -f installer.xml -Dair.sdk.version=2.6
+
+	wget https://builds.apache.org/job/flex-sdk_release/lastSuccessfulBuild/artifact/out/apache-flex-sdk-4.13.0-bin.tar.gz
+	
+	tar zxvf apache-flex-sdk-4.13.0-bin.tar.gz
+	
+
+	mv apache-flex-sdk-4.13.0-bin flex
+	cd flex
+	ant -f installer.xml -Dair.sdk.version=2.6
+	
 You will be asked to agree to all the licence terms.
 Now you just need to create folders to hold the player global file, and download the expected version:
-mkdir -p frameworks/libs/player/11.1/
-wget http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc -O frameworks/libs/player/11.1/playerglobal.swc
+
+	mkdir -p frameworks/libs/player/11.1/
+	wget http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc -O frameworks/libs/player/11.1/playerglobal.swc
 And finally verify that the Apache Flex compiler runs.
-bin/mxmlc
+
+	bin/mxmlc
 
 
-> Written with [StackEdit](https://stackedit.io/).
+ArrayCollection
+===============
+
+Flex Adobe does not support  JSON.stringify on mx:ArrayCollection. That is the reason why MailDC uses Apache Flex. 
