@@ -29,3 +29,93 @@ ArrayCollection
 ===============
 
 Flex Adobe does not support  JSON.stringify on mx:ArrayCollection. That is the reason why MailDC uses Apache Flex. 
+
+Flex ArrayCollection class is an very useful collection class in the mx.collections package.
+
+Each item added to a ArrayCollection has a specific index (starting at 0) and the collection will automatically grow as more items are added.
+
+ArrayCollection in action:
+
+	import mx.collections.ArrayCollection;
+   
+	// create an ArrayCollection
+	var collection:ArrayCollection = new ArrayCollection();
+   
+	// create a dummy object
+	var item:Object = new Object();
+   
+   
+	// add an item to the end
+	collection.addItem( item );
+   
+	// check if an item is in a collection
+	var belongs:Boolean = collection.contains( item );
+   
+	// get the index of an item
+	var index:int = collection.getItemIndex( item );
+   
+	// get an item by its index
+	item = collection.getItemAt( index );
+   
+	// remove an item by it's index
+	collection.removeItemAt( index );
+   
+	// add an item at a specific index
+	collection.addItemAt( item, 0 );
+   
+	   // remove all the items
+	   collection.removeAll();
+
+Array Wrapping
+--------------
+
+	// wrap an Array with an ArrayCollection
+	var array:Array = [ "A", "B", "C", "D", "E" ];
+	var collection:ArrayCollection = new ArrayCollection( array );
+   
+	trace( array.length ); // 5
+	trace( collection.length ); // 5
+   
+	// removing an item from the collection also removes it from the array
+	collection.removeItemAt( 2 );
+      
+	trace( array.length ); // 4
+	trace( collection.length ); // 4
+   
+	// get the collection contents as an array
+	var array2:Array = collection.toArray();
+
+Looping over collection
+-----------------------
+
+	// loop through each element using "for each"
+	var numbers:ArrayCollection = new ArrayCollection( [1, 2, 3, 4, 5] );
+	var number:String;
+	for each( number in numbers ){
+      trace( number );}
+   
+	// loop through each element of an array using "for"
+	var letters:ArrayCollection = new ArrayCollection( ["A", "B", "C", "D", "E"] );
+	var index:int;
+	for( index = 0; index < letters.length; index++ )
+	{
+      trace( "Element " + index + " is " + letters[index] );
+	   }
+ 
+
+Note, when an item is removed, all the indexes of the other items in the collection are updated to be sequential without gaps. So for a collection with N items, the indexes of its items will always be 0 through N-1.
+
+   // add several items to a collection
+   
+   >collection.addItem( "A" );
+   collection.addItem( "B" );
+   collection.addItem( "C" );
+   collection.addItem( "D" );
+   collection.addItem( "E" );
+   
+	// get the index of "E"
+	trace( collection.getItemIndex("E") ); // returns 4
+	// remove "C"
+	collection.removeItemAt( 2 );
+	// get the index of "E"
+	trace( collection.getItemIndex("E") ); // returns 3
