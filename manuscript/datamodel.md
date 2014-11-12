@@ -48,6 +48,15 @@ There will be two tree structures:
 
 The subfolders will be managed by the jQuery plugin "FancyTree", which uses a JSON object as its source.
 
+    source: [
+        {title: "Node 1", key: "1"},
+        {title: "Folder 2", key: "2", folder: true, children: [
+          {title: "Node 2.1", key: "3"},
+          {title: "Node 2.2", key: "4"}
+        ]}
+      ],
+
+
 The modifications will be done in the swf object in actionscript, since it provides a "modifyAt" method which is simple to use.
 
 We update the currentsubfolder ArrayCollection and then relaod the FancyTree!
