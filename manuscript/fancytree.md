@@ -17,4 +17,34 @@ The tree data is stored in an array of nested objects. For example
   
 A good [documentation](http://wwwendt.de/tech/fancytree/demo/index.html) can be found here.
 
+Like this:
+
+function createJSON() {
+    jsonObj = [];
+    $("input[class=email]").each(function() {
+
+        var id = $(this).attr("title");
+        var email = $(this).val();
+
+        item = {}
+        item ["title"] = id;
+        item ["email"] = email;
+
+        jsonObj.push(item);
+    });
+
+    console.log(jsonObj);
+}
+Explanation
+
+You are looking for an array of objects. So, you create a blank array. Create an object for each input by using 'title' and 'email' as keys. Then you add each of the objects to the array.
+
+If you need a string, then do
+
+jsonString = JSON.stringify(jsonObj);
+
+
+
+
+
 > Written with [StackEdit](https://stackedit.io/).
