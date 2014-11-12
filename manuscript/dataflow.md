@@ -20,8 +20,9 @@ EmailManager
 
 has to manage emails and exposes the following functions:
 
- - getEmail(index:String);
- - storeEmail(email:String);
+ - loadEmails();
+ - storeEmail(email:Object)
+ - emptyFolder(folder:String);
 
 
 
