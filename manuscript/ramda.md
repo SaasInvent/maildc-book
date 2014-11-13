@@ -19,3 +19,44 @@ You can create a promise from a value using Q.fcall. This returns a promise for 
     return Q.fcall(function () {
         return 10;
     });
+
+    a = [
+       nameA1: valueA1
+       nameA2: valueA2
+       nameA3: valueA3
+      ,
+       nameB1: valueB1
+       nameB2: valueB2
+       nameB3: valueB3
+    ]
+
+Will become:
+
+    var a;
+    
+    a = [
+      {
+        nameA1: valueA1,
+        nameA2: valueA2,
+        nameA3: valueA3
+      }, {
+        nameB1: valueB1,
+        nameB2: valueB2,
+        nameB3: valueB3
+      }
+    ];
+
+    // Q.all() and spread()
+    var stepA = function () {
+        console.log("This is step A, args=", arguments);
+        return "ret A";
+    };
+    var stepB = function () {
+        console.log("This is step B, args=", arguments);
+        return "ret B";
+    };
+    var finalStep = function (retA, retB) {
+        console.log("This is the final step, args=", arguments);
+    };
+    var promise = Q.all([Q.fcall(stepA), Q.fcall(stepB)]);
+    promise.spread(finalStep);
