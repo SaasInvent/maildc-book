@@ -12,6 +12,66 @@ The Beginning
 
 Everything above assumes you get a promise from somewhere else. This is the common case. Every once in a while, you will need to create a promise from scratch.
 
+
+## Q with CoffeeScript ##
+
+Here is a very good example of the [usage of Q with coffeescript.](http://asaf.github.io/blog/2013/07/09/q-promises-with-coffeescript/)
+
+
+Defining promises with CoffeeScript:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+q = require 'q'
+
+exports.hello = () ->
+  d = q.defer()
+  d.resolve 'hello'
+  d.promise
+
+    exports.world = () ->
+      d = q.defer()
+      d.resolve 'world'
+      d.promise
+
+    exports.die = () ->
+      d = q.defer()
+      d.reject 'bye world'
+      d.promise
+
+And here are Mocha sample of Q propagations and error handling
+
+
+    assert = require 'assert',
+    promises = require './promises'
+    
+    describe('Promises', () ->
+      it 'Simple', (done) ->
+        promises.die().then(
+          (val) =>
+            #handle val
+          (err) =>
+            assert.equal err, 'bye world'
+            done()
+        )
+
+
+
+
 Using Q.fcall
 
 You can create a promise from a value using Q.fcall. This returns a promise for 10.
@@ -60,3 +120,19 @@ Will become:
     };
     var promise = Q.all([Q.fcall(stepA), Q.fcall(stepB)]);
     promise.spread(finalStep);
+
+Here is another example
+
+    function square(x) {
+        return x * x;
+    }
+    function plus1(x) {
+        return x + 1;
+    }
+    
+    Q.fcall(function () {return 4;})
+    .then(plus1)
+    .then(square)
+    .then(function(z) {
+        alert("square of (value+1) = " + z);
+    });
