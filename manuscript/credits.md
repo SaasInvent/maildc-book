@@ -50,5 +50,6 @@ Client side projects
  - [jQuery UI Layout plugin](http://plugins.jquery.com/layout/)
  - [jQuery tablesorter plugin](http://tablesorter.com/docs/)
  - [LokiJS](http://lokijs.org/?utm_source=javascriptweekly#/)
+ - [Q Promises](http://documentup.com/kriskowal/q/)
 
 
