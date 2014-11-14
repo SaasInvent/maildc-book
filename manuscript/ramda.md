@@ -21,12 +21,12 @@ Here is a very good example of the [usage of Q with coffeescript.](http://asaf.g
 Defining promises with CoffeeScript:
 
 
-q = require 'q'
-
-exports.hello = () ->
-  d = q.defer()
-  d.resolve 'hello'
-  d.promise
+    q = require 'q'
+    
+    exports.hello = () ->
+      d = q.defer()
+      d.resolve 'hello'
+      d.promise
 
     exports.world = () ->
       d = q.defer()
@@ -38,60 +38,12 @@ exports.hello = () ->
       d.reject 'bye world'
       d.promise
 
-And here are Mocha sample of Q propagations and error handling
-
-
-    assert = require 'assert',
-    promises = require './promises'
-    
-    describe('Promises', () ->
-      it 'Simple', (done) ->
-        promises.die().then(
-          (val) =>
-            #handle val
-          (err) =>
-            assert.equal err, 'bye world'
-            done()
-        )
 
 
 
+Q.all() and spread()
+--------------------
 
-Using Q.fcall
-
-You can create a promise from a value using Q.fcall. This returns a promise for 10.
-
-    return Q.fcall(function () {
-        return 10;
-    });
-
-    a = [
-       nameA1: valueA1
-       nameA2: valueA2
-       nameA3: valueA3
-      ,
-       nameB1: valueB1
-       nameB2: valueB2
-       nameB3: valueB3
-    ]
-
-Will become:
-
-    var a;
-    
-    a = [
-      {
-        nameA1: valueA1,
-        nameA2: valueA2,
-        nameA3: valueA3
-      }, {
-        nameB1: valueB1,
-        nameB2: valueB2,
-        nameB3: valueB3
-      }
-    ];
-
-    // Q.all() and spread()
     var stepA = function () {
         console.log("This is step A, args=", arguments);
         return "ret A";
@@ -123,6 +75,7 @@ Here is another example
     });
 
 CoffeeScript Composite pattern
+==============================
 
 [One good adress:](https://github.com/dustinboston/coffeescript-design-patterns#composite)
 
@@ -157,3 +110,17 @@ CoffeeScript Composite pattern
         composite.operation()
     
     Client.run()
+
+
+The FancyTree Object
+--------------------
+
+The subfolders will be managed by the jQuery plugin "FancyTree", which uses a JSON object as its source.
+
+    source: [
+        {title: "Node 1", key: "1"},
+        {title: "Folder 2", key: "2", folder: true, children: [
+          {title: "Node 2.1", key: "3"},
+          {title: "Node 2.2", key: "4"}
+        ]}
+      ],
