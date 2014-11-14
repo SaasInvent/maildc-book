@@ -20,22 +20,7 @@ Here is a very good example of the [usage of Q with coffeescript.](http://asaf.g
 
 Defining promises with CoffeeScript:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
+
 q = require 'q'
 
 exports.hello = () ->
