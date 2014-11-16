@@ -7,5 +7,5 @@ WorkingBox/Internat
 CDN Ramda
 ---------
 
-/cdnjs.cloudflare.com/ajax/libs/ramda/0.7.2/ramda.js
+//cdnjs.cloudflare.com/ajax/libs/ramda/0.7.2/ramda.js
 
