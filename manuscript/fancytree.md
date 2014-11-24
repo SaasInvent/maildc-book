@@ -106,10 +106,41 @@ In order to reconstruct a tree, we use the following function:
         return out
      createReconstructTree(tree, parent= 0)
 
-The function *reconstructTree* takes the previously created flat deconstructed array as an argument and defines the recursive function *createReconstructTree* which is invoked at the end of the first function.
+The function *reconstructTree* takes the previously created flat deconstructed array as an argument and defines the recursive function *createReconstructTree* which is invoked at the end of the first outer function.
+
+*createReconstructTree* takes two arguments: the previously created flat deconstructed array and the root parent key. By definition, the root parent id is set to zero.
+createReconstructTree is a recursive tree, which invokes itself  when the following condition is met:
+
+if elem.parent is parent
+             children = createReconstructTree(tree, elem.key)
+
+You need to have in mind the form of the deconstructed flat array; here's an excerpt:
+
+{"key":"6ae8a010","title":"Current","parent":0},
+{"key":"6ae8a011","title":"Current-Child-One","parent":"6ae8a010"},
+{"key":"6ae8a012","title":"Current-Child-Two","parent":"6ae8a010"},
+
+The first time, when createReconstruct is invoked with parent = 0, it will call itself again with elem.key *6ae8a010* and then find two children.
+For these two children, we create on the elem, the property *folder* and *children*, which will be pushed on to the out array. 
+        
+
+     elem.folder = true
+     elem.children = children
+
+This is the structure imposed by FancyTree, if there are children, we need to set *folder* to *true*.
+
+Don't hesitate to put a 
+
+    console.log JSON.stringify out 
+
+ 
+after the push operation if you want to see by yourself what's going on...
 
 
 
+
+
+fdsfdsfds
 
 Like this:
 
@@ -142,3 +173,4 @@ jsonString = JSON.stringify(jsonObj);
 
 
 > Written with [StackEdit](https://stackedit.io/).
+
