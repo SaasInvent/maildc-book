@@ -17,9 +17,35 @@ The tree data is stored in an array of nested objects. For example
   
 A good [documentation](http://wwwendt.de/tech/fancytree/demo/index.html) can be found here.
 
+
+
+
+Actions performed on a FancyTree
+--------------------------------
+
+We need to be able to perform the following tasks on a FancyTree
+
+ - create a folder
+ - rename a folder
+ - move a folder
+ - delete a folder
+
+
+Achieving theses tasks is a three step process:
+
+ 1. deconstruct tree
+ 2. perform action
+ 3. reconstruct tree
+
+
+
+
+
+
+
 Like this:
 
-function createJSON() {
+	function createJSON() {
     jsonObj = [];
     $("input[class=email]").each(function() {
 
