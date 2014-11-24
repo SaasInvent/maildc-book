@@ -51,7 +51,29 @@ Starting from the FancyTree array structure (array of nested objects as listed a
 
 All the actions we need to perform on the FancyTree (create, rename, move and delete) are performed on this type of array.
 
-To obtain this array we use the following function:
+To obtain this array we use the following recursive function:
+
+ 
+
+     deconstructTree = (tree) ->
+        out = []    
+        createIntermediateTree = (tree)->    
+          for item in tree
+            if item?.title 
+              item.parent ?= 0   
+              intermediateObject = 
+                     key : item?.key
+                     title : item?.title
+                     parent : item?.parent
+              out.push intermediateObject                   
+              if item?.children 
+                 for elem in item.children
+                     $.extend(elem, {parent: item.key})
+                 createIntermediateTree(item.children) 
+        createIntermediateTree(tree)
+        out
+
+
 
 
 
