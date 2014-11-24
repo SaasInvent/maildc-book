@@ -39,8 +39,9 @@ Achieving theses tasks is a three step process:
 
 
 Deconstruct a Tree
+------------------
 
-Starting from the FancyTree array structure (array of nested objects as listed above) we want an array of objects with one object per leaf:
+Starting from the FancyTree array structure (array of nested objects as listed above) we want an array of objects with one object per leaf which has the following form:
 
 {"key":"6070aed0","title":"Inbox","parent":0},
 {"key":"6070aed1","title":"Drafts","parent":0},
@@ -51,7 +52,7 @@ Starting from the FancyTree array structure (array of nested objects as listed a
 
 All the actions we need to perform on the FancyTree (create, rename, move and delete) are performed on this type of array.
 
-To obtain this array we use the following recursive function:
+To obtain this array we use the following function:
 
  
 
@@ -73,7 +74,15 @@ To obtain this array we use the following recursive function:
         createIntermediateTree(tree)
         out
 
+What is going on in this function?
+We call the function *deconstructTree* with the FancyTree JSON object *tree*.
+Inside this function we define another function *createIntermediateTree* which we invoke at the end of our first function.
+When *createIntermediateTree* returns we return the array *out*.
 
+*createIntermediateTree* loops over the tree array and for each item it creates/constructs an *intermediateObject* which will be pushed on to the *out* array.
+If there are children, we recursively call *createIntermediateTree* for the children.
+
+We end up with a flat deconstructed array.
 
 
 
