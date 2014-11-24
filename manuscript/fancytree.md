@@ -38,7 +38,20 @@ Achieving theses tasks is a three step process:
  3. reconstruct tree
 
 
+Deconstruct a Tree
 
+Starting from the FancyTree array structure (array of nested objects as listed above) we want an array of objects with one object per leaf:
+
+{"key":"6070aed0","title":"Inbox","parent":0},
+{"key":"6070aed1","title":"Drafts","parent":0},
+{"key":"6070aed2","title":"Sent","parent":0},
+{"key":"6070aed3","title":"Trash","parent":0},
+{"key":"6ae8a010","title":"Current","parent":0},
+{"key":"6ae8a011","title":"Current-Child-One","parent":"6ae8a010"},{"key":"6ae8a012","title":"Current-Child-Two","parent":"6ae8a010"},{"key":"6ae8a013-6cb8","title":"Archives","parent":0},{"key":"6ae8a014","title":"Archives-Child-One","parent":"6ae8a013"},{"key":"6ae8a015","title":"Archives-Child-Two","parent":"6ae8a013"}] 
+
+All the actions we need to perform on the FancyTree (create, rename, move and delete) are performed on this type of array.
+
+To obtain this array we use the following function:
 
 
 
