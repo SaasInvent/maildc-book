@@ -50,7 +50,7 @@ Starting from the FancyTree array structure (array of nested objects as listed a
 {"key":"6ae8a010","title":"Current","parent":0},
 {"key":"6ae8a011","title":"Current-Child-One","parent":"6ae8a010"},{"key":"6ae8a012","title":"Current-Child-Two","parent":"6ae8a010"},{"key":"6ae8a013-6cb8","title":"Archives","parent":0},{"key":"6ae8a014","title":"Archives-Child-One","parent":"6ae8a013"},{"key":"6ae8a015","title":"Archives-Child-Two","parent":"6ae8a013"}] 
 
-All the actions we need to perform on the FancyTree (create, rename, move and delete) are performed on this type of array.
+All the actions we need to perform on the FancyTree (create, rename, move and delete) are performed on this intermediate array.
 
 To obtain this array we use the following function:
 
@@ -83,6 +83,30 @@ When *createIntermediateTree* returns we return the array *out*.
 If there are children, we recursively call *createIntermediateTree* for the children.
 
 We end up with a flat deconstructed array.
+
+
+Reconstruct a Tree
+------------------
+
+In order to reconstruct a tree, we use the following function:
+
+
+ 
+
+    reconstructTree = (tree) ->
+      createReconstructTree = (tree, parent) ->
+        out = []
+        for elem in tree
+          if elem.parent is parent
+             children = createReconstructTree(tree, elem.key)
+             if children.length
+                elem.folder = true
+                elem.children = children
+             out.push elem       
+        return out
+     createReconstructTree(tree, parent= 0)
+
+
 
 
 
