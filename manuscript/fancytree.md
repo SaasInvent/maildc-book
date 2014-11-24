@@ -106,7 +106,7 @@ In order to reconstruct a tree, we use the following function:
         return out
      createReconstructTree(tree, parent= 0)
 
-
+The function *reconstructTree* takes the previously created flat deconstructed array as an argument and defines the recursive function *createReconstructTree* which is invoked at the end of the first function.
 
 
 
