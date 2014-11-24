@@ -89,8 +89,6 @@ Reconstruct a Tree
 ------------------
 
 In order to reconstruct a tree, we use the following function:
-
-
  
 
     reconstructTree = (tree) ->
@@ -111,8 +109,10 @@ The function *reconstructTree* takes the previously created flat deconstructed a
 *createReconstructTree* takes two arguments: the previously created flat deconstructed array and the root parent key. By definition, the root parent id is set to zero.
 createReconstructTree is a recursive tree, which invokes itself  when the following condition is met:
 
+ 
+
     if elem.parent is parent
-       children = createReconstructTree(tree, elem.key)
+      children = createReconstructTree(tree, elem.key)
 
 You need to have in mind the form of the deconstructed flat array; here's an excerpt:
 
@@ -129,12 +129,19 @@ For these two children, we create on the *elem*, the property *folder* and *chil
 
 This is the structure imposed by FancyTree, if there are children, we need to set *folder* to *true*. In our flat deconstructed array, these two properties didn't exist : this is the way you create them whith the so called dot notation.
 
-Don't hesitate to put a 
+By the way, don't hesitate to put a 
 
     console.log JSON.stringify out 
 
  
 after the push operation if you want to see progressively what's going on...
+
+
+Renaming a leaf node
+
+So how do you rename a leaf node, once you have deconstructed the base array?
+
+
 
 
 
