@@ -190,47 +190,6 @@ Now everything is in place to walk through the function *launchRenameNode*.
 
 *launchRenameNode* is invoked with two arguments : the variable *key* of the node we want to rename, and the variable *newName* with the new name of the node. Next we **curry** the function *renameNode*. 
 Currying a function permits you to provide only part of the arguments of a given function. The remaining arguments can be provided later on! 
-You have to keep in mind that the function *renameNode* takes three arguments : *key, newName, tree*.
-Then we partially apply the new curried function with two arguments : *key* and *newName*. The function *localRenameNode* still waits for the third argument : *tree*. This third argument will be given to *localrenameNode* by the *fetchTree* function once the promise is resolved, which is immediately in our case.
-
-
-
-
-
-
-
-fdsfdsfds
-
-Like this:
-
-	function createJSON() {
-    jsonObj = [];
-    $("input[class=email]").each(function() {
-
-        var id = $(this).attr("title");
-        var email = $(this).val();
-
-        item = {}
-        item ["title"] = id;
-        item ["email"] = email;
-
-        jsonObj.push(item);
-    });
-
-    console.log(jsonObj);
-}
-Explanation
-
-You are looking for an array of objects. So, you create a blank array. Create an object for each input by using 'title' and 'email' as keys. Then you add each of the objects to the array.
-
-If you need a string, then do
-
-jsonString = JSON.stringify(jsonObj);
-
-
-
-
-
-> Written with [StackEdit](https://stackedit.io/).
-
-
+You have to keep in mind that the function *renameNode* takes three arguments : *key, newName tree*.
+Next we partially apply the new curried function with two arguments : *key* and *newName*. The function *localRenameNode* still waits for the third argument : *tree*. This third argument will be given to *localrenameNode* by the *fetchTree* function once the promise is resolved, which is immediately in our case.
+It is the joint usage of Promises and currying that permits us to glue our functions together the way we did!
