@@ -180,6 +180,18 @@ But with much ado, here's one example for renaming a leaf node:
            .done()
 
 
+There's one more piece of code you need to fully understand, the function *fetchTree()* :
+
+      fetchTree =  -> Q.when(test.tree) 
+
+This function returns a Promise with *test.tree* data. Now we have everything in place to walk through the function *launchRenameNode*.
+
+*launchRenameNode* is invoked with two arguments : the variable *key* of the node we want to rename, and the variable *newName* with the new name of the node. Next we **curry** the function *renameNode*. 
+Currying a function permits you to provide only part of the arguments of a given function. The remaining arguments can be provided later on! 
+You have to keep in mind that the function *renameNode* takes three arguments : *key, newName, tree*.
+Then we partially apply the new curried function with two arguments : *key* and *newName*. The function *localRenameNode* still waits for the third argument : *tree*. This third argument will be given to *localrenameNode* by the *fetchTree* function once the promise is resolved, which is immediately in our case.
+
+
 
 
 
@@ -218,4 +230,5 @@ jsonString = JSON.stringify(jsonObj);
 
 
 > Written with [StackEdit](https://stackedit.io/).
+
 
