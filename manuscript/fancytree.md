@@ -189,10 +189,12 @@ The funcion *fetchTree*  returns a Promise with *test.tree* data.
 Now everything is in place to walk through the function *launchRenameNode*.
 
 *launchRenameNode* is invoked with two arguments : the variable *key* of the node we want to rename, and the variable *newName* with the new name of the node. Next we **curry** the function *renameNode*. 
-Currying a function results in a new function that allows  you to provide only part of the arguments of the original function. The remaining arguments can be provided later on! 
+
+    Currying a function results in a new function that allows  you to provide only part of the arguments of the original function. The remaining arguments can be provided later on! 
+
 In our case, you have to keep in mind that the function *renameNode* takes three arguments : *key, newName tree*.
 
-The function curRenameNode has been curried and is invoked with with two arguments : *key* and *newName*. Initially, *renameNode* takes three arguments : we say that *curRenameNode* has been partially applied!
+The function *curRenameNode* has been curried and is invoked with with two arguments : *key* and *newName*. Initially, *renameNode* takes three arguments : we say that *curRenameNode* has been partially applied!
 
 The function *localRenameNode* still waits for the third argument : *tree*. This third argument will be given to *localrenameNode* by the *fetchTree* function once the promise is resolved, which is immediately in our case.
 
