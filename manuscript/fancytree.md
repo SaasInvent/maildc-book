@@ -138,8 +138,46 @@ after the push operation if you want to see progressively what's going on...
 
 
 Renaming a leaf node
+--------------------
 
 So how do you rename a leaf node, once you have deconstructed the base array?
+
+ 
+
+     renameNode = (key, newName, tree) ->
+        out = []
+        for elem in tree
+          if elem.key is key
+            elem.title = newName
+          out.push elem
+        out
+
+Well, it couldn't get any simpler! And for the other actions (create, move, delete) it's the about the same, so we'ere not repeating ourselves here.
+
+The next question is : how do you glue these things together? The answer is with functional programming
+
+Gluing things together
+
+The three step process described earlier on is realized using functional programming. We'll be using the following libraries
+
+ 1. Q Promises 
+ 2. Ramda
+
+
+
+But with much ado, here's one example for renaming a leaf node:
+ 
+
+     launchRenameNode = (key, newName) ->
+        curRenameNode = R.curry(renameNode)
+        localRenameNode = curRenameNode(key, newName)
+        fetchTree()
+           .then deconstructTree
+           .then localRenameNode
+           .then reconstructTree
+           .then (data) ->
+              $("#treeThree").fancytree({source: data})  
+           .done()
 
 
 
