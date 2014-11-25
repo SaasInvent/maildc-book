@@ -189,7 +189,13 @@ The funcion *fetchTree*  returns a Promise with *test.tree* data.
 Now everything is in place to walk through the function *launchRenameNode*.
 
 *launchRenameNode* is invoked with two arguments : the variable *key* of the node we want to rename, and the variable *newName* with the new name of the node. Next we **curry** the function *renameNode*. 
-Currying a function permits you to provide only part of the arguments of a given function. The remaining arguments can be provided later on! 
-You have to keep in mind that the function *renameNode* takes three arguments : *key, newName tree*.
-Next we partially apply the new curried function with two arguments : *key* and *newName*. The function *localRenameNode* still waits for the third argument : *tree*. This third argument will be given to *localrenameNode* by the *fetchTree* function once the promise is resolved, which is immediately in our case.
-It is the joint usage of Promises and currying that permits us to glue our functions together the way we did!
+Currying a function results in a new function that allows  you to provide only part of the arguments of the original function. The remaining arguments can be provided later on! 
+In our case, you have to keep in mind that the function *renameNode* takes three arguments : *key, newName tree*.
+
+The function curRenameNode has been curried and is invoked with with two arguments : *key* and *newName*. Initially, *renameNode* takes three arguments : we say that *curRenameNode* has been partially applied!
+
+The function *localRenameNode* still waits for the third argument : *tree*. This third argument will be given to *localrenameNode* by the *fetchTree* function once the promise is resolved, which is immediately in our case.
+
+**It is the joint usage of Q Promises and currying that permits us to glue our functions together the way we did!**
+
+Credits clearly go to Scott Sauyet, you may want to consult his article [Favoring curry!](http://fr.umio.us/favoring-curry/)
