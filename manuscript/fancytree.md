@@ -30,6 +30,7 @@ We need to be able to perform the following tasks on a FancyTree
  - move a folder
  - delete a folder
 
+These actions need to be separated from the general code flow, an abstraction is clearly asked for!
 
 Achieving theses tasks is a three step process:
 
@@ -37,6 +38,8 @@ Achieving theses tasks is a three step process:
  2. perform action
  3. reconstruct tree
 
+The first and the third step will be identical for all actions, no modification is needed. You will only have to adapt the second step!
+Now that the three step process has been identified, how do we go about it?
 
 Deconstruct a Tree
 ------------------
@@ -50,9 +53,9 @@ Starting from the FancyTree array structure (array of nested objects as listed a
 {"key":"6ae8a010","title":"Current","parent":0},
 {"key":"6ae8a011","title":"Current-Child-One","parent":"6ae8a010"},{"key":"6ae8a012","title":"Current-Child-Two","parent":"6ae8a010"},{"key":"6ae8a013-6cb8","title":"Archives","parent":0},{"key":"6ae8a014","title":"Archives-Child-One","parent":"6ae8a013"},{"key":"6ae8a015","title":"Archives-Child-Two","parent":"6ae8a013"}] 
 
-All the actions we need to perform on the FancyTree (create, rename, move and delete) are performed on this intermediate array.
+All the actions we need to perform on the *FancyTree* (create, rename, move and delete) are performed on this intermediate array.
 
-To obtain this array we use the following function:
+To obtain this flat deconstructed array we use the following function:
 
  
 
@@ -76,7 +79,7 @@ To obtain this array we use the following function:
 
 What is going on in this function?
 We call the function *deconstructTree* with the FancyTree JSON object *tree*.
-Inside this function we define another function *createIntermediateTree* which we invoke at the end of our first function.
+Inside this function we define another function *createIntermediateTree* which we invoke at the end (just before returning *out*).
 When *createIntermediateTree* returns we return the array *out*.
 
 *createIntermediateTree* loops over the tree array and for each item it creates/constructs an *intermediateObject* which will be pushed on to the *out* array.
@@ -107,7 +110,7 @@ In order to reconstruct a tree, we use the following function:
 The function *reconstructTree* takes the previously created flat deconstructed array as an argument and defines the recursive function *createReconstructTree* which is invoked at the end of the first outer function.
 
 *createReconstructTree* takes two arguments: the previously created flat deconstructed array and the root parent key. By definition, the root parent id is set to zero.
-createReconstructTree is a recursive tree, which invokes itself  when the following condition is met:
+*createReconstructTree* is a recursive function, which invokes itself  when the following condition is met:
 
  
 
@@ -120,14 +123,14 @@ You need to have in mind the form of the deconstructed flat array; here's an exc
 {"key":"6ae8a011","title":"Current-Child-One","parent":"6ae8a010"},
 {"key":"6ae8a012","title":"Current-Child-Two","parent":"6ae8a010"},
 
-The first time, when *createReconstruct* is invoked with parent = 0, it will call itself again with elem.key *6ae8a010* and then find two children.
-For these two children, we create on the *elem*, the property *folder* and *children*, which will be pushed on to the out array. 
+The first time, when *createReconstruct* is invoked with parent = 0, it will call itself again with *elem.key* *6ae8a010* and then find two children.
+For these two children, we create on the *elem*, the property *folder* and *children*, which will be pushed on to the *out* array. 
         
 
      elem.folder = true
      elem.children = children
 
-This is the structure imposed by FancyTree, if there are children, we need to set *folder* to *true*. In our flat deconstructed array, these two properties didn't exist : this is the way you create them whith the so called dot notation.
+This is the structure imposed by FancyTree, if there are children, we need to set *folder* to *true*. In our flat deconstructed array, these two properties didn't exist : this is the way you create them whith the so called *dot notation.*
 
 By the way, don't hesitate to put a 
 
@@ -157,6 +160,7 @@ Well, it couldn't get any simpler! And for the other actions (create, move, dele
 The next question is : how do you glue these things together? The answer is with functional programming
 
 Gluing things together
+----------------------
 
 The three step process described earlier on is realized using functional programming. We'll be using the following libraries
 
@@ -179,8 +183,13 @@ But with much ado, here's one example for renaming a leaf node:
               $("#treeThree").fancytree({source: data})  
            .done()
 
+We recognize in the middle of this code our three step process : 
 
-There's one more piece of code you need to fully understand, i.e. the function *fetchTree()* :
+ 1. deconstructTree
+ 2. localRenameCode
+ 3. reconstructTree
+
+But what does *fetchTree* do exactly?
 
       fetchTree =  -> Q.when(test.tree) 
 
