@@ -123,14 +123,14 @@ You need to have in mind the form of the deconstructed flat array; here's an exc
 {"key":"6ae8a011","title":"Current-Child-One","parent":"6ae8a010"},
 {"key":"6ae8a012","title":"Current-Child-Two","parent":"6ae8a010"},
 
-The first time, when *createReconstruct* is invoked with parent = 0, it will call itself again with *elem.key* *6ae8a010* and then find two children.
+In this example, when *createReconstruct* is invoked with parent = 0, it will call itself again with *elem.key* *6ae8a010*  **as parent** and then find two children.
 For these two children, we create on the *elem*, the property *folder* and *children*, which will be pushed on to the *out* array. 
         
 
      elem.folder = true
      elem.children = children
 
-This is the structure imposed by FancyTree, if there are children, we need to set *folder* to *true*. In our flat deconstructed array, these two properties didn't exist : this is the way you create them whith the so called *dot notation.*
+This is the structure imposed by *FancyTree*, if there are children, we need to set *folder* to *true*. In our flat deconstructed array, these two properties didn't exist : this is the way you create them whith the so called *dot notation.*
 
 By the way, don't hesitate to put a 
 
@@ -199,9 +199,13 @@ Now everything is in place to walk through the function *launchRenameNode*.
 
 *launchRenameNode* is invoked with two arguments : the variable *key* of the node we want to rename, and the variable *newName* with the new name of the node. Next we **curry** the function *renameNode*. 
 
-    Currying a function results in a new function that allows  you to provide only part of the arguments of the original function. The remaining arguments can be provided later on! 
+    Currying a function results in a new function that can be partially applied. 
+    
+    Partially applying a function means to invoke the curried function with only part of the arguments of the original function. 
 
-In our case, you have to keep in mind that the function *renameNode* takes three arguments : *key, newName tree*.
+    This in turn results in a new function that waits for the remaining arguments to be provided later on! 
+
+In our case, you have to keep in mind that the function *renameNode* takes three arguments : *key, newName* and *tree*
 
 The function *curRenameNode* has been curried and is invoked with with two arguments : *key* and *newName*. Initially, *renameNode* takes three arguments : we say that *curRenameNode* has been partially applied!
 
