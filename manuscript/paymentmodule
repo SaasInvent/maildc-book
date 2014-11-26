@@ -45,6 +45,7 @@ The above commands will also create a node_modules folder in your project direct
 Continuing on, let's create a test directory to hold our tests. As our primary module file is called index.js, within the test directory I will create a file by the same name - a simple convention. Mocha will by default run all tests in this directory. Our test should look something like the following. Note that I am using the should syntax provided by the Chai framework. Also note the use of require to pull in our module code into the test.
 
 Folder organization
+-------------------
 
 We will write our package in coffeescript, but only publish it in javascript. 
 I would suggest the following folder organization:
@@ -63,4 +64,33 @@ As our primary module file is called *index.js*, within the test directory I wil
         escape('&').should.equal('&amp;')
   
 
+But how do we actually run the tests? Following the Mocha docs and to keep things simple, we'll add a Makefile to the root of the project with an associated test target. Note that most projects seem to be using Grunt rather than Make these days. Regardless, our file should contain the following. *Note that the indentation after the test target must be a tab and not spaces.*
+
+    test:
+        ./node_modules/.bin/mocha --reporter spec
+    
+     .PHONY: test
+
+ 
+After doing so, we can then execute the tests by entering following command.
+
+    make test
+
+To improve upon this, we can now tell npm how to run our tests by simply adjusting the scripts:test section of our package.json file.
+
+    "scripts": {
+      "test": "make test"
+    },
+
+After doing so, we can then run the following command to run our tests.
+
+    npm test
+
+The output should look something like the following.
+
+
+Gulp file
+---------
+
+In order to compile the different coffeescript files we'll be using gulp.
 
