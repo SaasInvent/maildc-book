@@ -101,3 +101,6 @@ Module development
 
 The payplug module is inspired by the [paybox](https://github.com/Ideolys/node-paybox) module!
 
+To access your TEST (Sandbox) account parameters, you need to access the following URL (more information in the TEST (Sandbox) Mode section):
+
+ - https://www.payplug.fr/portal/test/ecommerce/autoconfig
