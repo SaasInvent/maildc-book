@@ -2,7 +2,25 @@
 
 MailDC is a paying service, although we strive to make it as less expensive as possible.
 
-A fee of 9€45 per year seems reasonable. The marketing department would have put it this way : less than one euro per month!
+A fee of *9€45 per year* seems reasonable. The marketing department would have put it this way : *less than one euro per month*!
 
+The payment provider is ["PayPlug"](https://www.payplug.fr/en/). Unfortunately there is no node module available for that platform.
 
-> Written with [StackEdit](https://stackedit.io/).
+So we're going to write our own!
+
+Writing a npm module
+--------------------
+
+To get started, I created a new repository on my Github account and then cloned it locally.
+
+*Configure npm*
+Let's get started by configuring npm a little bit. Go ahead and enter these commands in a terminal, using your own information. This way, when we run some npm commands later, it will already know who we are and will be able to autocomplete some information for us.
+
+    npm set init.author.name "WorkingBox"
+    npm set init.author.email "contact@working-box.com"
+    npm set init.author.url "http://www.working-box.com"
+
+This next command will prompt you for an email and password, create or verify a user in the npm registry, and save the credentials to the ~/.npmrc file.
+
+    npm adduser
+
