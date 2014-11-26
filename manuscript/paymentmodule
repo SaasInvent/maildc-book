@@ -38,7 +38,7 @@ Next, we'll surely want to write some tests. I prefer to use the Mocha and Chai 
     npm install gulp --save-dev
     npm install gulp-coffee --save-dev
 
-The above commands will also create a node_modules folder in your project directory containing those dependencies. Following best practices, we'll want to keep the node_modules folder out of the git repository. We can do that by adding a .gitignore file to our project root, with the following contents.
+The above commands will also create a node_modules folder in your project directory containing those dependencies. Following best practices, we'll want to keep the node_modules folder out of the git repository. We can do that by adding a *.gitignore* file to our project root, with the following contents.
 
     node_modules
 
@@ -55,6 +55,12 @@ I would suggest the following folder organization:
 
 As our primary module file is called index.js, within the test directory I will create a file by the same name - a simple convention. Mocha will by default run all tests in this directory. Our test should look something like the following. Note that I am using the should syntax provided by the Chai framework. Also note the use of require to pull in our module code into the test.
 
+    should = require('chai').should()
+    payplug = require('../index')
 
+    describe('#escape', ->
+      it('converts & into &amp;' ,  ->
+        escape('&').should.equal('&amp;')
+  
 
 
