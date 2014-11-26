@@ -94,3 +94,10 @@ Gulp file
 
 In order to compile the different coffeescript files we'll be using gulp.
 
+
+
+Module development
+------------------
+
+The payplug module is inspired by the [paybox](https://github.com/Ideolys/node-paybox) module!
+
