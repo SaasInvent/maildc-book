@@ -53,7 +53,7 @@ I would suggest the following folder organization:
  - lib : compiled javascript
  - test : mocha/chai tests
 
-As our primary module file is called index.js, within the test directory I will create a file by the same name - a simple convention. Mocha will by default run all tests in this directory. Our test should look something like the following. Note that I am using the should syntax provided by the Chai framework. Also note the use of require to pull in our module code into the test.
+As our primary module file is called *index.js*, within the test directory I will create a file by the same name - a simple convention. Mocha will by default run all tests in this directory. Our test should look something like the following. Note that I am using the should syntax provided by the Chai framework. Also note the use of require to pull in our module code into the test.
 
     should = require('chai').should()
     payplug = require('../index')
