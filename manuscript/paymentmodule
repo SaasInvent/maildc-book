@@ -13,14 +13,32 @@ Writing a npm module
 
 To get started, I created a new repository on my Github account and then cloned it locally.
 
-*Configure npm*
+    git clone https://github.com/WorkingBox/payplug.git
+
+By the way, working-box is another of my projects worth checking out!
+
+
+Configure npm
+-------------
+
 Let's get started by configuring npm a little bit. Go ahead and enter these commands in a terminal, using your own information. This way, when we run some npm commands later, it will already know who we are and will be able to autocomplete some information for us.
 
     npm set init.author.name "WorkingBox"
     npm set init.author.email "contact@working-box.com"
     npm set init.author.url "http://www.working-box.com"
 
-This next command will prompt you for an email and password, create or verify a user in the npm registry, and save the credentials to the ~/.npmrc file.
+This next command will prompt you for an email and password, create or verify a user in the npm registry, and save the credentials to the *~/.npmrc* file.
 
     npm adduser
+
+Next, we'll surely want to write some tests. I prefer to use the Mocha and Chai frameworks, but you can use whatever you like. These can be installed and persisted to the package.json file with the following commands. Note that they are added to the '*devDependencies*' section, as they are only required during development and not at runtime.
+
+    npm install mocha --save-dev
+    npm install chai --save-dev
+
+The above commands will also create a node_modules folder in your project directory containing those dependencies. Following best practices, we'll want to keep the node_modules folder out of the git repository. We can do that by adding a .gitignore file to our project root, with the following contents.
+
+    node_modules
+
+Continuing on, let's create a test directory to hold our tests. As our primary module file is called index.js, within the test directory I will create a file by the same name - a simple convention. Mocha will by default run all tests in this directory. Our test should look something like the following. Note that I am using the should syntax provided by the Chai framework. Also note the use of require to pull in our module code into the test.
 
