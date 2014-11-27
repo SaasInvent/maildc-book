@@ -122,11 +122,6 @@ You should use the following credit card credentials :
 
 All payments will terminate with a success message.
 
-Tous les paiements effectués simuleront un paiement en "succès"
-
-
- - https://www.payplug.fr/portal/test/ecommerce/autoconfig
-
 To access your TEST (Sandbox) account parameters, you need to access the following URL (more information in the TEST (Sandbox) Mode section):
 
 https://www.payplug.fr/portal/test/ecommerce/autoconfig
@@ -140,3 +135,57 @@ We advise you to access this URL directly from your server and save the paramete
  - `payplugPublicKey`	: The RSA key that allows you to verify notifications that the payment notifications (IPN) sent to your server was sent by PayPlug and was not modified by a third party.
  
 Remark: you must save *yourPrivateKey* and *payplugPublicKey* in the PEM format (base64 representation of a RSA private key). 
+
+
+Creating a payment
+------------------
+
+In order to accept a payment, you must redirect your customer to a URL of the form:
+
+    base_url?data=data&sign=signature
+
+    <?php
+    $url = $base_url . "?data=".$data . "&sign=".$signature;
+    header("Location: $url");
+    exit();
+
+ 
+
+ - The `base_url` parameter
+
+This is the url field retrieved and saved during the configuration step.
+
+
+ - The `data` parameter
+
+The data parameter contains the payment data you wish to send to PayPlug. This data must be encoded in base64 then as a URL.
+
+
+    <?php
+    $params = array(
+              'amount' => 999,
+              'currency' => 'EUR',
+              'ipn_url' => 'http://www.example.org/ipn.php',
+              'email' => 'john.doe@client.com',
+              'first_name' => 'John',
+              'last_name' => 'Doe'
+              );
+    $url_params = http_build_query($params);
+    $data = urlencode(base64_encode($url_params));
+
+The fields amount, currency and ipn_url are required. Note that if any of the fields email, first_name or last_name is left blank, the customer will be required to enter all three fields on the payment page.
+
+ - The `signature` parameter
+
+The signature parameter is a SHA1 + RSA signature calculated from the data field value (not encoded in base64, i.e. $url_params in the following example).
+
+This signature must be calculated using OpenSSL with the private key you saved during the setup step. The signature must be encoded in base64 and then as a URL.
+
+Example in PHP
+
+    <?php
+    /* $pvkey = yourPrivateKey saved during the configuration phase */
+    $privatekey = openssl_pkey_get_private($pvkey);
+    openssl_sign($url_params, $signature, $privatekey, OPENSSL_ALGO_SHA1);
+    $signature = urlencode(base64_encode($signature));
+
