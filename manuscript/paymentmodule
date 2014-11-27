@@ -126,3 +126,17 @@ Tous les paiements effectués simuleront un paiement en "succès"
 
 
  - https://www.payplug.fr/portal/test/ecommerce/autoconfig
+
+To access your TEST (Sandbox) account parameters, you need to access the following URL (more information in the TEST (Sandbox) Mode section):
+
+https://www.payplug.fr/portal/test/ecommerce/autoconfig
+We advise you to access this URL directly from your server and save the parameters in a file or in a database. The JSON object contains the following fields:
+
+ - `amount_min` : 	Minimum amount allowed per transaction (EUR).
+ - `amount_max` : 	Maximum amount allowed per transaction (EUR).
+ - `currencies` : 	Currencies 
+ - `url` : 	The base URL to use in constructing the payment with the data and signature fields (`base_url` parameters in the “creating a payment” section).
+ - `yourPrivateKey`	: Your RSA key to be used to sign transaction data. Without this signature, PayPlug will refuse the payment request.
+ - `payplugPublicKey`	: The RSA key that allows you to verify notifications that the payment notifications (IPN) sent to your server was sent by PayPlug and was not modified by a third party.
+ 
+Remark: you must save *yourPrivateKey* and *payplugPublicKey* in the PEM format (base64 representation of a RSA private key). 
