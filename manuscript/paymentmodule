@@ -38,6 +38,14 @@ Next, we'll surely want to write some tests. I prefer to use the Mocha and Chai 
     npm install gulp --save-dev
     npm install gulp-coffee --save-dev
 
+The other modules can be installed as follows:
+
+    npm install ramda --save
+    npm install crypto --save
+
+
+
+
 The above commands will also create a node_modules folder in your project directory containing those dependencies. Following best practices, we'll want to keep the node_modules folder out of the git repository. We can do that by adding a *.gitignore* file to our project root, with the following contents.
 
     node_modules
@@ -102,5 +110,19 @@ Module development
 The payplug module is inspired by the [paybox](https://github.com/Ideolys/node-paybox) module!
 
 To access your TEST (Sandbox) account parameters, you need to access the following URL (more information in the TEST (Sandbox) Mode section):
+
+
+Test data for Payplug
+
+You should use the following credit card credentials :
+
+    Number: 5017670000001800
+    Expiration: a date in the future
+    CVV: 400
+
+All payments will terminate with a success message.
+
+Tous les paiements effectués simuleront un paiement en "succès"
+
 
  - https://www.payplug.fr/portal/test/ecommerce/autoconfig
