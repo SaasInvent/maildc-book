@@ -49,6 +49,8 @@ The other modules can be installed as follows:
     npm install node-uuid --save
     npm install querystring --save
 	npm install stream --save
+	npm install iconv-lite --save
+	
 
 
 
