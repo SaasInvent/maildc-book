@@ -38,6 +38,8 @@ Next, we'll surely want to write some tests. I prefer to use the Mocha and Chai 
     npm install gulp --save-dev
     npm install gulp-coffee --save-dev
     npm install gulp-util --save-dev
+    npm install chai-as-promised --save-dev
+    npm install sinon-chai --save-dev
 
 The other modules can be installed as follows:
 
