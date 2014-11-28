@@ -46,6 +46,7 @@ The other modules can be installed as follows:
     npm install ramda --save
     npm install crypto --save
     npm install q --save
+    npm install node-uuid --save
 
 
 
