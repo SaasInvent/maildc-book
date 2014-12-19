@@ -35,5 +35,6 @@ Options are [defaults]:
 
 So to serve the current directory on port 8000, type:
 
+    cd client
     http-server -p 8000
 
