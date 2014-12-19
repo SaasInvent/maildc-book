@@ -1,0 +1,39 @@
+#HTML development
+
+
+With our Backbone.js setup, we are using html snippets as templates.
+
+These code snippets are stored in our Backbone views which are either using the coffeescript or the javascript coloring syntax scheme.
+
+In order to have the correct html coloring scheme we should develop our code snippets inside html files.
+
+In order to achieve this we will place an "index.html" file in our 
+
+ - /client
+
+directory. This will respect all our relative paths.
+
+The node.js http-server module is our choice of serving files. To install this module:
+
+    npm install http-server -g
+
+This will download any required dependencies and install http-server.
+
+Now, from any directory, you can type:
+
+    http-server [path] [options]
+
+Path is optional, defaulting to ./public if it exists, otherwise ./.
+
+Options are [defaults]:
+
+    -p The port number to listen on [8080]
+    -a The host address to bind to [localhost]
+    -i Display directory index pages [True]
+    -s or --silent Silent mode won't log to the console
+    -h or --help Displays help message and exits
+
+So to serve the current directory on port 8000, type:
+
+    http-server -p 8000
+
