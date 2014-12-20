@@ -35,7 +35,7 @@ Options are [defaults]:
 
 So to serve the current directory on port 8000, type:
 
-    cd client
+    cd assets
     http-server -p 8000
 
 On Amazon hosting you would launch the following command:
@@ -43,3 +43,13 @@ On Amazon hosting you would launch the following command:
     root@ip-172-31-26-155:/home/ubuntu/workingbox/wkb-web-site-0.8/assets# http-server -p 8080 -a 172.31.26.155
 
 As you can see, you would launch http-server with the private IP from Amazon!
+
+After creating a page "sandbox.html" in the "assets folder, you might charge the following page
+
+
+
+Then have a look at
+
+    http://your-domain-name:8080/sandbox.html
+
+fsdfdsfds
