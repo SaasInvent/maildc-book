@@ -33,14 +33,10 @@ Options are [defaults]:
     -s or --silent Silent mode won't log to the console
     -h or --help Displays help message and exits
 
-So to serve the current directory on port 8000, type:
+So to serve a file in the "assets" directory on port 8080, type:
 
     cd assets
-    http-server -p 8000
-
-On Amazon hosting you would launch the following command:
-
-    root@ip-172-31-26-155:/home/ubuntu/workingbox/wkb-web-site-0.8/assets# http-server -p 8080 -a 172.31.26.155
+    http-server ./assets -p 8080 -a 172.31.26.155
 
 As you can see, you would launch http-server with the private IP from Amazon!
 
@@ -54,3 +50,26 @@ Here's the command embedded into gulp-shell:
       'http-server ./assets -p 8080 -a 172.31.26.155'
     ]));
 
+# Gulp
+
+In order to watch our less/css modifications we launch a gulp "watch"task:
+
+    gulp.task('watch', function () {
+      gulp.watch('./assets/css/*.less', ['sandbox-less']);
+    });
+
+Here's the associated 'sandbox-less' task:
+
+    gulp.task('sandbox-less', function () {  
+        return gulp.src('./assets/css/workingbox.less')
+        .pipe(plumber(function(error) {                                       
+	        gutil.log(gutil.colors.red(error.message));
+	        gutil.beep();
+            this.emit('end');
+                })) 
+        .pipe(less()) // Compile LESS
+       // .pipe(minifyCSS()) // Minify CSS
+        .pipe(gulp.dest('./assets/sandbox/'));
+       });
+
+Gulp-plumber is very helpful to avoid that everything comes to a halt on error!
