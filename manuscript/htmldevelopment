@@ -44,12 +44,13 @@ On Amazon hosting you would launch the following command:
 
 As you can see, you would launch http-server with the private IP from Amazon!
 
-After creating a page "sandbox.html" in the "assets folder, you might charge the following page
-
-
-
-Then have a look at
+After creating a page "sandbox.html" in the "assets folder, you might charge the following page :
 
     http://your-domain-name:8080/sandbox.html
 
-fsdfdsfds
+Here's the command embedded into gulp-shell:
+
+    gulp.task('webserver', shell.task([
+      'http-server ./assets -p 8080 -a 172.31.26.155'
+    ]));
+
