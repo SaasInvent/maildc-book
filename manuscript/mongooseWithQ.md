@@ -19,18 +19,16 @@ Credit goes to [this article.](http://blog.xebia.fr/2014/11/28/mongoose-les-prom
 Here's some example code:
 
     express_app.post '/api/payplugipn', (req, res)=>
-	    console.log "ipn state is : " + req.param('state')
-	    console.log "order is : " + req.param('order'
 	    Q(Account.findOne({email : req.param('email')}).exec())
 	    .then (account) ->
-        console.log "Account : " +  account
-        account.checkValidUntil()
-        account.addPremiumMois()
-        account.save (err, doc) =>
-            if err
-                console.log err
-            else
-                console.log "saved Account"
+	        console.log "Account : " +  account
+	        account.checkValidUntil()
+	        account.addPremiumMois()
+	        account.save (err, doc) =>
+	            if err
+	                console.log err
+	            else
+	                console.log "saved Account"
 	    .then(WKB.updateInvoice(req))
 	    .then(WKB.printInvoice(req))
 	    .fail (err) ->
