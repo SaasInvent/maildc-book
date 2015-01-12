@@ -1,19 +1,37 @@
-## Mongoose with Q promises ##
+## Mongoose and Q Promises ##
 
+Mongoose uses its own solution to Promises. Unfortunately it is not compatible with Q Promises.
 
-Heureusement Q propose une solution simple pour les intégrer avec la fonction Q() qui permet de wrapper une promise Mongoose dans une promesse Q, et donc d’intégrer les Promises Mongoose dans des chaînages de promises Q, ou bien d’utiliser tout simplement les syntaxes Q.
+But there is a workaround :
 
-Ainsi, vous devrez écrire le code suivant :
-
- 
+    You need to wrap your mongoose command into a Q Promise:
 
     Q(Conference.findOne({ id: 12 }).exec())
-    .then (conference) ->
-        console.log conference
-        next()
-    .fail (err) ->
-        # handle error here.
+		.then (conference) ->
+		    console.log conference
+		.fail (err) ->
+			console.log err
+   
 
- 
 
-Plus généralement, si vous travaillez avec une autre librairie de Promises que Q, vous pouvez wrapper vos Promises avec la fonction Q() dans la mesure où votre librairie propose une syntaxe compatible avec les wrappers Q. Dixit la documentation de la librairie :
+Credit goes to [this article.](http://blog.xebia.fr/2014/11/28/mongoose-les-promises-et-q/)
+
+Here's some example code:
+
+    express_app.post '/api/payplugipn', (req, res)=>
+	    console.log "ipn state is : " + req.param('state')
+	    console.log "order is : " + req.param('order'
+	    Q(Account.findOne({email : req.param('email')}).exec())
+	    .then (account) ->
+        console.log "Account : " +  account
+        account.checkValidUntil()
+        account.addPremiumMois()
+        account.save (err, doc) =>
+            if err
+                console.log err
+            else
+                console.log "saved Account"
+	    .then(WKB.updateInvoice(req))
+	    .then(WKB.printInvoice(req))
+	    .fail (err) ->
+	       console.log err
