@@ -33,3 +33,24 @@ Here's some example code:
 	    .then(WKB.printInvoice(req))
 	    .fail (err) ->
 	       console.log err
+
+
+This is the example code from WKBudateInvoice(req) :
+
+  
+
+     updateInvoice: (req) ->     
+         order = req.param('order')            
+         Q(Payplug.findOne({order : order} ).exec()) 
+           .then (payplug) ->
+              payplug.first_name = req.param('first_name')
+              payplug.last_name = req.param('last_name')
+              payplug.state = req.param('state')
+              payplug.id_transaction = parseInt(req.param('id_transaction'), 10)
+              payplug.save (err, doc) ->
+                if err?
+                   console.log err
+                else
+                 console.log "Payplug after save : " + doc
+             .fail (err) ->
+                 console.log err      
