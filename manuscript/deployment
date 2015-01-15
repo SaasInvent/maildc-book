@@ -58,9 +58,9 @@ Workflow
 -------
 
  1. rsync to dev
- 2. modify dev
+ 2. modify dev (config data)
  3. rsync to prod
- 4. repair glyphicons
+ 4. repair glyphicons (on prod server)
 
 The last point is a quirk of Bootstrap : it needs the glyphicons in the css subfolder.
 
