@@ -1,0 +1,73 @@
+## Workflow : dev to prod ##
+
+This document holds all the information necessary for déploying my web-application : 
+
+ - from developpment server to
+ - production server
+
+## Development ##
+
+Development is done on Amazon Web Services (AWS).
+
+On my Amazon server there are two principal directories
+
+- the "dev" directory
+- a main development directory
+
+The purpose of the "main development directory" is to do the development.
+The "dev" directory holds the data to be transferred. Any config data needs to be adapted before transfer.
+
+The /dev directory is organized as follows
+
+/dev/workingbox
+/dev/scripts (for transfert to prod server)
+
+
+Production
+----------
+
+The production server has enough space for several versions of our web-applications.
+
+We'll create the following directories
+
+- /www/vers01
+- /www.vers02
+
+and so on..
+
+The Amazon development platform has not enough space for all the different versions.
+
+
+Transfer scripts
+----------------
+
+The transfer scripts are in the following directory
+
+    /dev/scripts
+
+Transfer is done via rsync. Below an example script:
+
+	   
+
+> "hash"!/bin/sh  
+> rsync -avz --delete-after -e  "ssh -i keys"
+> /home/ubuntu/dev/wkb-main-web-site/ workingbox@server_ip:/home/workingbox/www-v0.2
+> exit 0
+
+Workflow
+-------
+
+ 1. rsync to dev
+ 2. modify dev
+ 3. rsync to prod
+ 4. repair glyphicons
+
+The last point is a quirk of Bootstrap : it needs the glyphicons in the css subfolder.
+
+This is why I'll create a symbolic link in my css directory:
+
+    cd to css directory
+    
+    ln -s /address/where/glyphicons_are glyphicons
+
+    ln -s /home/ubuntu/workingbox/wkb-web-site-0.8/assets/fonts/ glyphicons
