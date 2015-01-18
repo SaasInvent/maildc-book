@@ -17,7 +17,7 @@ On my Amazon server there are two principal directories
 The purpose of the "main development directory" is to do the development.
 The "dev" directory holds the data to be transferred. Any config data needs to be adapted before transfer.
 
-The /dev directory is organized as follows
+The */home/ubuntu/dev* directory is organized as follows
 
 /dev/workingbox
 /dev/scripts (for transfert to prod server)
@@ -47,7 +47,7 @@ The transfer scripts are in the following directory
 
 Transfer is done via rsync. Below an example script:
 
-	   
+to update the server's time, use sudo ntpdate ntp.ubuntu.com 	   
 
 > "hash"!/bin/sh  
 > rsync -avz --delete-after -e  "ssh -i keys"
@@ -57,7 +57,7 @@ Transfer is done via rsync. Below an example script:
 Workflow
 -------
 
- 1. rsync to dev
+ 1. rsync to dev (rsyncToDevMain.sh)
  2. modify dev (config data)
  3. rsync to prod
  4. repair glyphicons (on prod server)
@@ -71,3 +71,11 @@ This is why I'll create a symbolic link in my css directory:
     ln -s /address/where/glyphicons_are glyphicons
 
     ln -s /home/ubuntu/workingbox/wkb-web-site-0.8/assets/fonts/ glyphicons
+
+
+## Troubleshooting ##
+
+You might think about changing the glyphicons directory.
+
+The server time is also worth mentioning. To update server time on Ubuntu do the following
+
