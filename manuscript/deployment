@@ -78,4 +78,15 @@ This is why I'll create a symbolic link in my css directory:
 You might think about changing the glyphicons directory.
 
 The server time is also worth mentioning. To update server time on Ubuntu do the following
+You may manually sync the clock using the following
+
+    sudo ntpdate servername
+
+where servername can be any public or private time server. You may always choose the following without hesitation
+
+    sudo ntpdate pool.ntp.org
+
+If you don’t have ntpdate installed, you can install it via:
+
+    sudo aptitude install ntpdate
 
