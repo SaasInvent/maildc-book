@@ -75,7 +75,7 @@ This is why I'll create a symbolic link in my css directory:
 
 ## Troubleshooting ##
 
-You might think about changing the glyphicons directory.
+You might think about changing the glyphicons directory symbolic link.
 
 The server time is also worth mentioning. To update server time on Ubuntu do the following
 You may manually sync the clock using the following
