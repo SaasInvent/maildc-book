@@ -57,6 +57,9 @@ to update the server's time, use sudo ntpdate ntp.ubuntu.com
 Workflow
 -------
 
+Development is done on the Amazon platform. We've created a "dev" directory for intermediate transfer. We will rsync from this repository to the production server at Hetzner's.
+
+
  1. rsync to dev (rsyncToDevMain.sh)
  2. modify dev (config data)
  3. rsync to prod
@@ -89,4 +92,9 @@ where servername can be any public or private time server. You may always choose
 If you don’t have ntpdate installed, you can install it via:
 
     sudo aptitude install ntpdate
+
+
+The payplug module is situated under the workingbox module
+
+/`node_modules/workingbox/node_modules/payplug`
 
