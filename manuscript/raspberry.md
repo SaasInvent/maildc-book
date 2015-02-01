@@ -122,7 +122,7 @@ This will install the Express command line tool, which will aid in creating a ba
     express
     npm install
 
-
+you need to run the bin/www
 These commands will create an empty Express project in the directory we just created socketio-test. We then run npm install to get all the dependencies that are needed to run the app. To test the empty application, run node app then navigate your browser to 
 
     http://saasinvent.ddns.net:3000 
