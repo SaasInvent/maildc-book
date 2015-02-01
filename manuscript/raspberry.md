@@ -75,15 +75,18 @@ That's all, we're ready to go!
 Node Version Manager
 --------------------
 
+Node is best used and managed with the [Node Version Manager](https://github.com/creationix/nvm) (NVM)
+
+
     apt-get install git
 
     wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.23.2/install.sh | bash
 
-source ~/.nvm/nvm.sh
+    source ~/.nvm/nvm.sh
 
-Pour l’installation de la dernière version de node (Current Version: v0.10.22), il convient de saisir la commande suivante:
+To install a node version:
 
-nvm install v0.10.22
+    nvm install v0.10.22
 
 
 
@@ -99,9 +102,11 @@ You need to add the following lines at the end of the user's .bashrc file:
     nvm use v0.10.22 > /dev/null 2>&1
 Activate everything with the following command:
 
-    enter code here
+    source ~/.nvm/nvm.sh
 
-source ~/.nvm/nvm.sh
+
+Express install
+---------------
 
 
 
