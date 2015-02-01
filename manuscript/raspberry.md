@@ -110,10 +110,13 @@ Express install
 
 Express is a web application framework for Node. It is minimal and flexible. In order to start using Express, you need to use NPM to install the module. Simple type:
 
-    npm install -g express
+    mkdir node
+    cd node
+    npm install -g express-generator
 
 This will install the Express command line tool, which will aid in creating a basic web application. Once you have Express installed, follow these steps to create an empty Express project:
 
+	cd /home/pi
     mkdir sampersend
     cd sampersend
     express
