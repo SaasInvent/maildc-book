@@ -56,6 +56,21 @@ Then we need to adapt the permissions:
 
     chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
 
+For further documentation [read this!](http://www.elvenware.com/charlie/development/cloud/SshFtpsPutty.html)
+
+
+CodeAnywhere
+------------
+
+We want to add a SFTP server to CodeAnywhere
+
+    server : raspberry 
+    host: saasinvent.ddns.net
+    password : optional
+    private key : copy id_rsa (cat id_rsa; and copy it) 
+    initial directory  : /home/pi
+
+That's all, we're ready to go!
 
 
 
