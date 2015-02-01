@@ -87,16 +87,22 @@ nvm install v0.10.22
 
 
 
-Pour son utilisation
+How to use NVM
+--------------
 
-nvm use v0.10.22 > /dev/null 2>&1
-Il faut rajouter ces deux lignes dans le .bashrc de l’utilisateur!
-[[ -s /root/.nvm/nvm.sh ]] && . /root/.nvm/nvm.sh 
-nvm use v0.10.22 > /dev/null 2>&1
+    nvm use v0.10.22 > /dev/null 2>&1
 
-Puis pour activer le paramétrage:ggg
+You need to add the following lines at the end of the user's .bashrc file:
+
+
+    [[ -s /root/.nvm/nvm.sh ]] && . /root/.nvm/nvm.sh 
+    nvm use v0.10.22 > /dev/null 2>&1
+Activate everything with the following command:
+
+    enter code here
 
 source ~/.nvm/nvm.sh
+
 
 
 
