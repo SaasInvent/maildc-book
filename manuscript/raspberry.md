@@ -31,10 +31,13 @@ SSH installation
 
 To install ssh we do the [following:](http://kb.mediatemple.net/questions/1626/Using+SSH+keys+on+your+server)
 
+As user "pi" do the following:
 
     cd /home/pi
     mkdir ~/.ssh
     ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -C "raspberry"
+    touch ~/.ssh/authorized_keys
+    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
 Then we need to adapt the permissions:
 
