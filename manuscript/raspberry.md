@@ -108,7 +108,7 @@ Activate everything with the following command:
 Express install
 ---------------
 
-Express is a web application framework for Node. It is minimal and flexible. In order to start using Express, you need to use NPM to install the module. Simple type:
+[Express](https://github.com/strongloop/express) is a web application framework for Node. It is minimal and flexible. In order to start using Express, you need to use NPM to install the module. Simple type:
 
     mkdir node
     cd node
@@ -122,7 +122,8 @@ This will install the Express command line tool, which will aid in creating a ba
     express
     npm install
 
-you need to run the bin/www
+you need to run the `bin/www` file.
+
 These commands will create an empty Express project in the directory we just created socketio-test. We then run npm install to get all the dependencies that are needed to run the app. To test the empty application, run node app then navigate your browser to 
 
     http://saasinvent.ddns.net:3000 
