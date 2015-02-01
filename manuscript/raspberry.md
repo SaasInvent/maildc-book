@@ -98,7 +98,7 @@ How to use NVM
 You need to add the following lines at the end of the user's .bashrc file:
 
 
-    [[ -s /root/.nvm/nvm.sh ]] && . /root/.nvm/nvm.sh 
+    [[ -s /home/pi/.nvm/nvm.sh ]] && . /home/pi/.nvm/nvm.sh 
     nvm use v0.10.22 > /dev/null 2>&1
 Activate everything with the following command:
 
@@ -107,6 +107,27 @@ Activate everything with the following command:
 
 Express install
 ---------------
+
+Express is a web application framework for Node. It is minimal and flexible. In order to start using Express, you need to use NPM to install the module. Simple type:
+
+    npm install -g express
+
+This will install the Express command line tool, which will aid in creating a basic web application. Once you have Express installed, follow these steps to create an empty Express project:
+
+    mkdir sampersend
+    cd sampersend
+    express
+    npm install
+
+
+These commands will create an empty Express project in the directory we just created socketio-test. We then run npm install to get all the dependencies that are needed to run the app. To test the empty application, run node app then navigate your browser to 
+
+    http://saasinvent.ddns.net:3000 
+
+You should get a simple welcome message saying: "Welcome to Express".
+
+If you see the welcome message then you have a basic express application ready and running!
+
 
 
 
