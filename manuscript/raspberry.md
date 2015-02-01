@@ -26,8 +26,21 @@ The config file can be found in the following directory:
 
     /etc/vsftpd.conf
 
+Copy this file from an existing installation and restart vsftpd.
+Attention, you'll need to create /etc/vsftpd/user_list file with user "pi" and "transfert".
+
+Then restart the service from /etc/init.d
+
+.
+
+    ./vsftpd stop
+    ./vstpd start
+
+
+
 
 SSH installation
+----------------
 
 To install ssh we do the [following:](http://kb.mediatemple.net/questions/1626/Using+SSH+keys+on+your+server)
 
@@ -42,6 +55,7 @@ As user "pi" do the following:
 Then we need to adapt the permissions:
 
     chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
+
 
 
 
