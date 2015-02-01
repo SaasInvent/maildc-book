@@ -72,6 +72,31 @@ We want to add a SFTP server to CodeAnywhere
 
 That's all, we're ready to go!
 
+Node Version Manager
+--------------------
+
+    apt-get install git
+
+    wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.23.2/install.sh | bash
+
+source ~/.nvm/nvm.sh
+
+Pour l’installation de la dernière version de node (Current Version: v0.10.22), il convient de saisir la commande suivante:
+
+nvm install v0.10.22
+
+
+
+Pour son utilisation
+
+nvm use v0.10.22 > /dev/null 2>&1
+Il faut rajouter ces deux lignes dans le .bashrc de l’utilisateur!
+[[ -s /root/.nvm/nvm.sh ]] && . /root/.nvm/nvm.sh 
+nvm use v0.10.22 > /dev/null 2>&1
+
+Puis pour activer le paramétrage:ggg
+
+source ~/.nvm/nvm.sh
 
 
 
