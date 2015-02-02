@@ -133,6 +133,30 @@ You should get a simple welcome message saying: "Welcome to Express".
 If you see the welcome message then you have a basic express application ready and running!
 
 
+How to send an SMS?
+-------------------
+
+We will be using the [this](https://github.com/emilsedgh/modem) node library :
+
+Modem.js allows you to use your GSM modems on node. It offers a very simple API. It supports:
+
+ - Sending SMS messages
+ - Receiving SMS messages
+ - Getting delivery reports
+ - Deleting messages from memory
+ - Getting notifications when memory is full
+ - Getting signal quality
+ - Making ussd sessions
+ - 16bit (ucsd messages)
+ - 7bit (ascii) messages
+ - Multipart messages
+ - Getting notifications when someone calls
+
+
+
+
+
+
 
 
 
