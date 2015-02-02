@@ -153,8 +153,55 @@ Modem.js allows you to use your GSM modems on node. It offers a very simple API.
  - Getting notifications when someone calls
 
 
+Our GSM modem
+-------------
+
+We will be using the following GSM Modem:
+
+    Cablematic - Modem GSM et GPRS voix (RS-232) 900/1800
 
 
+USB to RS232
+------------
+
+How do we connect our rs232 serial port modem to our usb interface?
+
+[This article](http://blog.mypapit.net/2008/05/how-to-use-usb-serial-port-converter-in-ubuntu.html) is very helpful!
+
+First plug in the USB-Serial Port adaptor to one of your USB port. Wait for a couple of second, then run “dmesg”. You should see these message at the end of dmesg output.
+
+
+usb 1-1: new full speed USB device using uhci_and address 2
+usb 1-1: configuration #1 chosen from 1 choice
+
+After that, unplug the device and type “lsusb”. You will see a list of output similar to this.
+
+Bus 003 Device 001: ID 0000:0000
+Bus 002 Device 007: ID 03f0:4f11 Hewlett-Packard
+Bus 002 Device 006: ID 05e3:1205 Genesys Logic, Inc. Afilias Optical Mouse H3003
+Bus 002 Device 004: ID 15d9:0a33
+
+Plug in the USB-Serial Port converter back, and run “lsusb” again, and you shall see an additional line, like this.
+
+
+Bus 003 Device 001: ID 0000:0000
+Bus 002 Device 007: ID 03f0:4f11 Hewlett-Packard
+Bus 001 Device 002: ID 4348:5523 --- --- --- (notice the additional line!)
+Bus 002 Device 006: ID 05e3:1205 Genesys Logic, Inc. Afilias Optical Mouse H3003
+Bus 002 Device 004: ID 15d9:0a33
+
+Now we know the vendor id and the product id of the USB-Serial Port converter, this will enable us to load the linux kernel module “usbserial” to activate the device, like this :
+
+
+    sudo modprobe usbserial vendor=0x4348 product=0x5523
+
+Run “dmesg” again and you shall see lines similar like this :
+
+    usbserial_generic 1-1:1.0: generic converter detected
+    usb 1-1: generic converter now attached to ttyUSB0
+    usbcore: registered new interface driver usbserial_generic
+
+As you can see, the new serial port device is mapped to /dev/ttyUSB0. You can instruct Ubuntu to load this module automatically by include the line : “usbserial vendor=0×4348 product=0×5523″ inside “/etc/modules” file.
 
 
 
