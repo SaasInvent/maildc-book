@@ -193,7 +193,7 @@ Bus 002 Device 004: ID 15d9:0a33
 Now we know the vendor id and the product id of the USB-Serial Port converter, this will enable us to load the linux kernel module “usbserial” to activate the device, like this :
 
 
-    sudo modprobe usbserial vendor=0x4348 product=0x5523
+    sudo modprobe usbserial vendor=0x1a86 product=0x7523
 
 Run “dmesg” again and you shall see lines similar like these :
 
@@ -201,9 +201,26 @@ Run “dmesg” again and you shall see lines similar like these :
     usb 1-1: generic converter now attached to ttyUSB0
     usbcore: registered new interface driver usbserial_generic
 
-As you can see, the new serial port device is mapped to `/dev/ttyUSB0`. You can instruct Ubuntu to load this module automatically by include the line : “usbserial vendor=0×4348 product=0×5523″ inside “/etc/modules” file.
+As you can see, the new serial port device is mapped to `/dev/ttyUSB0`. You can instruct Ubuntu to load this module automatically by include the line : “usbserial vendor=0x1a86 product=0x7523″ inside “/etc/modules” file.
+
+The USB device is being recognized and set up as /dev/ttyUSB0. When I try setting the baud rate with stty I get:
+
+$ sudo stty -F /dev/ttyUSB0 115200
+
+stty -F /dev/ttyUSB0
+speed 9600 baud; line = 0;
+min = 1; time = 0;
+-brkint -icrnl -imaxbel
+-opost -onlcr
+-isig -icanon -iexten -echo -echoe -echok -echoctl -echoke
 
 
+modprobe -r usbserial
+
+
+dmesg|egrep -i 'serial|ttys'
+
+[Simple script](https://github.com/lurch/rpi-serial-console) to easily enable & disable the Raspberry Pi's serial console. Disabling the serial console is required if you want to use the Raspberry Pi's serial port (UART) to talk to other devices e.g. microcontrollers (see http://elinux.org/RPi_Serial_Connection for more information).
 
 
 
