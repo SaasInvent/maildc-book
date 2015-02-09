@@ -8,6 +8,8 @@ This is the document that describes the steps necessary steps for cross-compilat
 
 http://superuser.com/questions/577124/how-to-connect-to-aws-ec2-instance-from-chromebook-pixel
 
+http://www.vkick.com/?p=261
+
 
 Ressources
 ----------
