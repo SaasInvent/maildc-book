@@ -10,6 +10,23 @@ http://superuser.com/questions/577124/how-to-connect-to-aws-ec2-instance-from-ch
 
 http://www.vkick.com/?p=261
 
+Create an Amazon AMI
+--------------------
+
+First import keys from "ssh-keys" directory
+This is already done, you do this once
+
+Choose "keys" as private/public key pair.
+
+
+
+Secure Shell
+------------
+You must import two files for each identity. One should be the private key
+and should not have a file extension. The other should be the public key,
+and must end in “.pub”. 
+For example, “keys” and “keys.pub”.
+
 
 Ressources
 ----------
