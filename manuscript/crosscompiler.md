@@ -6,7 +6,7 @@ This is the document that describes the steps necessary steps for cross-compilat
 
 [Cross compilation](http://www.chicoree.fr/w/Compilation_crois%C3%A9e_facile_pour_Raspberry_Pi) may be done from Amazon AWS.
 
-
+http://superuser.com/questions/577124/how-to-connect-to-aws-ec2-instance-from-chromebook-pixel
 
 
 Ressources
