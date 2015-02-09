@@ -6,15 +6,14 @@ This is the document that describes the steps necessary steps for cross-compilat
 
 [Cross compilation](http://www.chicoree.fr/w/Compilation_crois%C3%A9e_facile_pour_Raspberry_Pi) may be done from Amazon AWS.
 
-http://superuser.com/questions/577124/how-to-connect-to-aws-ec2-instance-from-chromebook-pixel
 
-http://www.vkick.com/?p=261
+
+
 
 Create an Amazon AMI
 --------------------
 
-First import keys from "ssh-keys" directory
-This is already done, you do this once
+First import keys from "ssh-keys" directory. (This is already done, you only do this once)
 
 Choose "keys" as private/public key pair.
 
@@ -22,10 +21,12 @@ Choose "keys" as private/public key pair.
 
 Secure Shell
 ------------
-You must import two files for each identity. One should be the private key
+[You must import two](http://www.vkick.com/?p=261) files for each identity. One should be the private key
 and should not have a file extension. The other should be the public key,
 and must end in “.pub”. 
 For example, “keys” and “keys.pub”.
+
+For more information, have a look [here.](http://superuser.com/questions/577124/how-to-connect-to-aws-ec2-instance-from-chromebook-pixel)
 
 
 Ressources
