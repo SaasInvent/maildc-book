@@ -92,13 +92,100 @@ Ressources
    introduction](http://www.bootc.net/archives/2012/05/26/how-to-build-a-cross-compiler-for-your-raspberry-pi/)
 
 
-Kernel modules compilation
+
+Cross-tool installation
+-----------------------
+
+Prerequisites
+
+Launch the following command as root:
+
+    apt-get install bzip2 build-essential bison flex gperf texinfo gawk libtool automake libncurses5-dev subversion
+
+Crosstool-ng
+
+In order to install crosstool-ng do the following: 
+
+    export VERSION=1.20.0
+    wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-${VERSION}.tar.bz2
+    tar xjf crosstool-ng-${VERSION}.tar.bz2
+    cd crosstool-ng-${VERSION}
+    ./configure --prefix=/opt/crosstool-ng
+    make
+    sudo make install
+
+Configuration
+-------------
+
+For detailed instructions, [have a look here](http://www.chicoree.fr/w/Compilation_crois%C3%A9e_facile_pour_Raspberry_Pi)!
+
+The following variable may also be declared into .bashrc:
+
+    export PATH="${PATH}:/opt/crosstool-ng/bin"
+
+
+
+Working directory
+-----------------
+
+    mkdir rpi-dev
+    cd rpi-dev
+
+Now launch the tool-chain configuration
+
+    ct-ng menuconfig
+Toolchain build and test
+
+After the different configuration steps, simply type:
+
+    ct-ng build
+    export PATH="${PATH}:/home/ubuntu/x-tools/arm-unknown-linux-gnueabi/bin"
+
+The last line may also be added to .bashrc.
+
+To test the toolchain, do the following
+
+
+Kernel module compilation
 --------------------------
 
 
 
 
 [Cross compilation for linux modules](http://www.chicoree.fr/w/Compilation_crois%C3%A9e_d%27un_module_Linux_pour_Rasberry_Pi) can be found here:
+
+RPI Kernel
+----------
+
+Change to your home directory, then:
+
+git clone http://github.com/raspberrypi/linux rpi-kernel
+
+En plus des sources à proprement parler, vous avez besoin de la configuration du noyau. Celle-ci peut être directement récupérée dans le pseudo-système de fichiers /proc de la cible:
+
+    cd /media/NFS
+    ssh pi@saasinvent.ddns.net cat /proc/config.gz | gunzip - > /media/NFS/.config
+
+
+
+Mais les sources et la configuration ne suffisent pas. Il faut aussi compiler le noyau. Ce n'est pas compliqué; juste long…
+
+    cd /media/NFS 
+    make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi- oldconfig
+    make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi- prepare
+
+L'option -j9 indique au make de lancer jusqu'à 9 processus en parallèle.
+
+À ajuster en fonction du nombre de "cœurs" de votre machine
+
+    make -j4 ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi-
+
+
+
+
+
+
+
 
 
 
