@@ -231,13 +231,13 @@ Pensez à modifier dans le fichier ci-dessus la ligne KDIR:= pour refléter l'em
 Construction du module
 ----------------------
 
-make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi-
+    make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi-
 
 Copy to raspberry
 -----------------
 
 
-scp my-module.ko pi@saasinvent.ddns.net:.
+    scp my-module.ko pi@saasinvent.ddns.net:.
 
 
 Pour tester, il suffit de charger/décharger le module du noyau de la cible, chacune de ces opération faisant apparaitre un message dans le journal du système (grâce aux printk présents dans le code source):
@@ -246,16 +246,16 @@ Test
 ----
 
 
-ssh pi@saasinvent.ddns.net
-pi@raspberrypi ~ $ sudo insmod my-module.ko
-pi@raspberrypi ~ $ dmesg
-[...]
-[69370.606868] Hello world
-pi@raspberrypi ~ $ sudo rmmod my_module
-pi@raspberrypi ~ $ dmesg
-[...]
-[69370.606868] Hello world
-[69411.891597] Goodbye world
+    ssh pi@saasinvent.ddns.net
+    sudo insmod my-module.ko
+    dmesg
+    [...]
+    [69370.606868] Hello world
+    sudo rmmod my_module
+    dmesg
+    [...]
+    [69370.606868] Hello world
+    [69411.891597] Goodbye world
 
 
 
