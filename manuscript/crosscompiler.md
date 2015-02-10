@@ -80,7 +80,7 @@ Then edit the /etc/fstab file and add the following line:
 Mounting manually:
 ------------------
 
-mount 54.229.137.228:/home/ubuntu/rpikernel /media/NFS
+mount 54.77.161.209:/home/ubuntu/rpikernel /media/NFS
 
 Ressources
 ----------
@@ -174,14 +174,86 @@ Mais les sources et la configuration ne suffisent pas. Il faut aussi compiler le
     make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi- oldconfig
     make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi- prepare
 
-L'option -j9 indique au make de lancer jusqu'à 9 processus en parallèle.
+L'option -j4 indique au make de lancer jusqu'à 9 processus en parallèle.
 
 À ajuster en fonction du nombre de "cœurs" de votre machine
 
     make -j4 ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi-
 
 
+Compiler son propre module
 
+Une fois les outils en place, écrire son propre module revient à écrire un programme C contenant les points d'entrée init_module (appelé par le kernel au chargement du module) et cleanup_module (appelé par le kernel au déchargement du module):
+
+    #include <linux/module.h>  /* Needed by all modules */
+    MODULE_LICENSE("GPL");
+    MODULE_AUTHOR("sylvain@chicoree.fr, 2012");
+    MODULE_DESCRIPTION("Demo module for cross compiling");
+     
+    int init_module(void)
+    {
+      // Print a message in the kernel log
+      printk("Hello world\n");
+     
+      // A non 0 return means init_module failed; module can't be loaded.
+      return 0;
+    }
+
+ 
+ 
+
+    void cleanup_module(void)
+    {
+      // Print a message in the kernel log
+      printk("Goodbye world\n");
+    }
+
+La construction du module à partir de ce fichier source se faisant avec les makefiles spécifiques du kernel, l'usage est d'utiliser un fichier Makefile local au répertoire du module, et qui se contente d'invoquer de manière récursive ses homologues présents dans le dossier du kernel:
+
+
+
+My Module Makefile
+------------------
+
+
+obj-m := my-module.o
+KDIR := /media/NFS/
+PWD := $(shell pwd)
+all:
+	$(MAKE) -C $(KDIR) M=$(PWD) modules
+clean:
+	$(MAKE) -C $(KDIR) M=$(PWD) clean
+
+Pensez à modifier dans le fichier ci-dessus la ligne KDIR:= pour refléter l'emplacement des sources du kernel sur votre machine. Puis, lors de l'invocation du make, n'oubliez pas de définir les macros ARCH et CROSS_COMPILE adéquate pour votre cible:
+
+Construction du module
+----------------------
+
+make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi-
+
+Copy to raspberry
+-----------------
+
+
+scp my-module.ko pi@saasinvent.ddns.net:.
+
+
+Pour tester, il suffit de charger/décharger le module du noyau de la cible, chacune de ces opération faisant apparaitre un message dans le journal du système (grâce aux printk présents dans le code source):
+
+Test
+----
+
+
+ssh pi@saasinvent.ddns.net
+pi@raspberrypi ~ $ sudo insmod my-module.ko
+pi@raspberrypi ~ $ dmesg
+[...]
+[69370.606868] Hello world
+pi@raspberrypi ~ $ sudo rmmod my_module
+pi@raspberrypi ~ $ dmesg
+[...]
+[69370.606868] Hello world
+[69411.891597] Goodbye world
 
 
 
