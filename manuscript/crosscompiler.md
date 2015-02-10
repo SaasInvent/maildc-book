@@ -75,12 +75,14 @@ You'll need to install the nfs-common packet:
 
 Then edit the /etc/fstab file and add the following line:
 
-54.229.137.228:/home/ubuntu/rpikernel/ /media/NFS nfs defaults,user,auto,noatime,intr 0 0
+    54.77.161.209:/home/ubuntu/rpikernel/ /media/NFS nfs defaults,user,auto,noatime,intr 0 0
 
 Mounting manually:
 ------------------
 
-mount 54.77.161.209:/home/ubuntu/rpikernel /media/NFS
+On Amazon AWS, start rpikernel instance server first, then from instance server crosscompiling :
+
+    mount 54.77.161.209:/home/ubuntu/rpikernel /media/NFS
 
 Ressources
 ----------
