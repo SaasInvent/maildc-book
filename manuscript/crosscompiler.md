@@ -4,7 +4,7 @@ Cross-compilation
 This is the document that describes the steps necessary steps for cross-compilation:
 
 
-[Cross compilation](http://www.chicoree.fr/w/Compilation_crois%C3%A9e_facile_pour_Raspberry_Pi) may be done from Amazon AWS.
+[Cross compilation](http://www.chicoree.fr/w/Compilation_crois%C3%A9e_facile_pour_Raspberry_Pi) may be done from Amazon AWS. For this we will be using two machines : one for cross-compiling and another to hold the kernel sources.
 
 
 
@@ -15,16 +15,14 @@ Create an Amazon AMI
 
 First import keys from "ssh-keys" directory. (This is already done, you only do this once)
 
-Choose "keys" as private/public key pair.
+Choose **"keys"** as private/public key pair for your Amazon instance.
 
 
 
 Secure Shell
 ------------
-[You must import two](http://www.vkick.com/?p=261) files for each identity. One should be the private key
-and should not have a file extension. The other should be the public key,
-and must end in “.pub”. 
-For example, “keys” and “keys.pub”.
+[You must import two](http://www.vkick.com/?p=261) files for each identity. One should be the private key and should not have a file extension. The other should be the public key, and must end in “.pub”. 
+For example, *“keys” and “keys.pub”.*
 
 For more information, have a look [here.](http://superuser.com/questions/577124/how-to-connect-to-aws-ec2-instance-from-chromebook-pixel)
 
@@ -53,11 +51,10 @@ Configuration on the server (Ubuntu):
     sudo apt-get install nfs-kernel-server
     sudo apt-get install nfs-utils rpcbind
 
-Configuration
-déclaration de l'Export NFS
-La configuration d'un 'export' NFS se fait en éditant le fichier `/etc/exports`
+Configuration is done in the following file:
+`/etc/exports`
 
- 
+ Please add the following line (adapt to your server IP)
 
 
     /home/ubuntu/rpikernel 54.229.137.228/24(rw,all_squash,anonuid=1000,anongid=1000,sync,no_subtree_check)
@@ -65,20 +62,18 @@ La configuration d'un 'export' NFS se fait en éditant le fichier `/etc/exports`
     exportfs -ar
     sudo service nfs-kernel-server reload
 
-service rpcbind start
-service nfs start
-service nfslock start
-
 
 
 Configuration on the client
 ---------------------------
 
-Le paquet nécessaire pour accéder à un NFS est nfs-common
+You'll need to install the nfs-common packet:
 
-sudo mkdir /media/NFS
+    apt-get install nfs-common
 
-Pour ce faire, il suffit de modifier le fichier /etc/fstab pour y ajouter la ligne:
+    sudo mkdir /media/NFS
+
+Then edit the /etc/fstab file and add the following line:
 
 54.229.137.228:/home/ubuntu/rpikernel/ /media/NFS nfs defaults,user,auto,noatime,intr 0 0
 
