@@ -29,6 +29,64 @@ For example, “keys” and “keys.pub”.
 For more information, have a look [here.](http://superuser.com/questions/577124/how-to-connect-to-aws-ec2-instance-from-chromebook-pixel)
 
 
+
+Network File system
+-------------------
+
+Unfortunately, the kernel sources are too big in size for one AWS instance. The simple solution is to use two AWS instances and then mount one onto the other...
+
+We will be using two file servers:
+
+
+    crosscompiling : 54.229.137.228
+    rpikernel : 54.77.161.209
+
+We need to open some ports on ASW security groups:
+Through the EC2 Console or API, you want to allowing connections from your client to your server on the following ports:
+
+    TCP: 111, 2049
+    UDP: 111, 32806
+
+Configuration on the server (Ubuntu):
+-------------------------------------
+
+    sudo apt-get install nfs-kernel-server
+    sudo apt-get install nfs-utils rpcbind
+
+Configuration
+déclaration de l'Export NFS
+La configuration d'un 'export' NFS se fait en éditant le fichier `/etc/exports`
+
+ 
+
+
+    /home/ubuntu/rpikernel 54.229.137.228/24(rw,all_squash,anonuid=1000,anongid=1000,sync,no_subtree_check)
+
+    exportfs -ar
+    sudo service nfs-kernel-server reload
+
+service rpcbind start
+service nfs start
+service nfslock start
+
+
+
+Configuration on the client
+---------------------------
+
+Le paquet nécessaire pour accéder à un NFS est nfs-common
+
+sudo mkdir /media/NFS
+
+Pour ce faire, il suffit de modifier le fichier /etc/fstab pour y ajouter la ligne:
+
+54.229.137.228:/home/ubuntu/rpikernel/ /media/NFS nfs defaults,user,auto,noatime,intr 0 0
+
+Mounting manually:
+------------------
+
+mount 54.229.137.228:/home/ubuntu/rpikernel /media/NFS
+
 Ressources
 ----------
 
