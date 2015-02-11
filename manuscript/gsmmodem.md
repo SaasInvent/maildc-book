@@ -53,3 +53,39 @@ following on the command-line:
 “sudo dmesg|grep –i ttyUSB”
 You should see something like:
 usb 5-1: generic converter now attached to ttyUSB0
+
+
+
+Network registration information (CREG) output depends on modem configuration.
+
+By sending "AT+CREG=0" one can disable network registration code (which is your case)
+By sending "AT+CREG=1" one can enable network registration
+By sending "AT+CREG=2" one can enable network registration code with
+location information (location area code and cell ID)
+Options 2. and 3. will also automatically emit +CREG messages upon modem boot/network change.
+
+
+ps: one should not forget to save current AT configuration by executing AT&W
+
+Disable pin code
+----------------
+
+This article explains [how to disable pin code](http://dostmuhammad.com/blog/disable-pin-code-using-gsm-modem-at-commands/) :
+If you have a PIN code enabled SIM card and want to remove /disable PIN code using AT commands follow these commands,
+suppose 9546 is the current PIN code , Replace 9546 with your PIN code, >>> shows the response from modem.
+
+
+    AT+CPIN?
+    +CPIN: SIM PIN // pin codes need to be entered
+    OK
+     
+    AT+CPIN="9546"
+    OK
+     
+    AT+CLCK="SC",0,"9546" // disable pin code
+    OK
+     
+    AT+CPIN? 
+    +CPIN: READY
+
+Another [interesting article](http://dostmuhammad.com/blog/gsm-modemmodule-not-responding-to-at-commands-after-firmware-upgrade/) from the same source.
