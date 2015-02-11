@@ -89,3 +89,31 @@ suppose 9546 is the current PIN code , Replace 9546 with your PIN code, >>> show
     +CPIN: READY
 
 Another [interesting article](http://dostmuhammad.com/blog/gsm-modemmodule-not-responding-to-at-commands-after-firmware-upgrade/) from the same source.
+
+
+
+T+CMGF – Set SMS Text Mode or SMS PDU Mode
+The AT+CMGF command sets the GSM modem in SMS Text Mode or SMS PDU Mode.
+
+In Text Mode, SMS messages are represented as readable text. In PDU Mode, all SMS messages are represented as binary strings encoded in hexadecimal characters like 31020B911326880736F40000A900.
+
+Although Text Mode is easier to use, PDU Mode is more consistent on different GSM Modems.
+
+Command	Positive Response
+AT+CMGF=<mode><CR>	OK
+Parameters
+<mode>: 0 = PDU Mode, 1 = Text Mode
+<CR> = ASCII character 13
+
+Example
+Set the GSM modem to Text Mode SMS and send a message to GSM number +31628870634.
+
+AT+CMGF=1
+OK
+AT+CMGS="+31628870634"
+> This is the text message.→
++CMGS: 198
+OK
+
+
+stty -F /dev/ttyUSB0 115200
