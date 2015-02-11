@@ -79,10 +79,10 @@ suppose 9546 is the current PIN code , Replace 9546 with your PIN code, >>> show
     +CPIN: SIM PIN // pin codes need to be entered
     OK
      
-    AT+CPIN="9546"
+    AT+CPIN="1234"
     OK
      
-    AT+CLCK="SC",0,"9546" // disable pin code
+    AT+CLCK="SC",0,"1234" // disable pin code
     OK
      
     AT+CPIN? 
