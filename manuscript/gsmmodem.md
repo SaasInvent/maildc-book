@@ -5,6 +5,14 @@ SIMCOM SIM300 module
  - the internal SIMCOM module (DCE
  - the external World (DTE)
 
+modprobe -r usbserial
+modprobe usbserial vendor=0x1a86 product=0x7523
+dmesg|grep –i ttyUSB
+
+
+mknod /dev/ttyUSB0 c 188 0
+
+
 AT Commands
 ----------
 
@@ -116,4 +124,14 @@ AT+CMGS="+31628870634"
 OK
 
 
-stty -F /dev/ttyUSB0 115200
+
+
+//Check if Simcom module is connected to the network
+AT+CGACT?
+
++CGACT: 1,0
++CGACT: 2,0
++CGACT: 3,0
+
+OK
+Device is NOT connected.
