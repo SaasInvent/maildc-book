@@ -10,6 +10,19 @@ modprobe usbserial vendor=0x1a86 product=0x7523
 dmesg|grep –i ttyUSB
 
 
+
+[This works!](https://elementztechblog.wordpress.com/2014/08/18/interfacing-sim900a-gsm-modem-with-raspberrypi/)
+
+
+    import serial
+    import timeser = serial.Serial("/dev/ttyUSB0",115200,timeout=1) 
+    ser.flush()
+    ser.write("ATD9020XXXXXX;\r") # call a number
+    
+    time.sleep(10) # wait for 10 seconds
+    ser.write("ATH\r") # Hang up
+    ser.close() # close the serial port
+
 mknod /dev/ttyUSB0 c 188 0
 
 
