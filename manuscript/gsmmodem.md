@@ -2,7 +2,7 @@ Introduction
 
 SIMCOM SIM300 module
 
- - the internal SIMCOM module (DCE
+ - the internal SIMCOM module (DCE)
  - the external World (DTE)
 
 modprobe -r usbserial
@@ -23,7 +23,7 @@ dmesg|grep –i ttyUSB
     ser.write("ATH\r") # Hang up
     ser.close() # close the serial port
 
-mknod /dev/ttyUSB0 c 188 0
+
 
 
 AT Commands
