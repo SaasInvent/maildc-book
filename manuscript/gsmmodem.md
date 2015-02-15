@@ -9,6 +9,21 @@ modprobe -r usbserial
 modprobe usbserial vendor=0x1a86 product=0x7523
 dmesg|grep –i ttyUSB
 
+How To Send SMS From Computer Using AT Commands With GSM/GPRS Modem
+
+1. Plug In Your GSM/GPRS modem
+2. Find out which COM Port the modem is connecting 
+3. Start-> Accessories-> Communication-> Hyperterminal
+4. Open new connection
+5. "Connect using:" the correct COM port, you will see a
+windows->change Bits per second to "9600" (for GSM) "115200" (for GPRS) 
+6. Type "AT" and press Enter (it'll show "ok")
+7. Type "AT+CMGF=1" and press Enter (it'll show "ok". It is to set the GSM / GPRS modem to operate in SMS text mode. )
+8. Type "AT+CMGW="+651234567" " and press Enter (it'll show ">"."+65" is country code, "1234567" is recipient's number) 
+9. Start typing SMS. When finished, press Ctrl + Z (it'll show "+CMGW:1", it means the message is stored as index:1 in the message storage) 
+10. Type "AT+CMSS=1" and press Enter (It'll show something like "+CMSS: 219". "219" is the reference no of the sent message) 
+11. If it shows "OK" at the end, it means the message is successfully sent.
+
 
 
 [This works!](https://elementztechblog.wordpress.com/2014/08/18/interfacing-sim900a-gsm-modem-with-raspberrypi/)
