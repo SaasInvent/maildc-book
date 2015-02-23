@@ -1,0 +1,75 @@
+## Pydio at home ##
+
+
+First we need to ensure that Apache web server is installed
+
+
+Apache
+------
+
+In order to know your server's IP address, simply login to your router and go to the client listing.
+Then ssh into your server; in my case
+
+ssh hexa-video-one@192.168.1.102
+
+To remember the user, I create for each machine a user with the machine name. 
+
+Then, as root, apt-get install apache2
+
+http://192.168.1.102
+
+Could not reliably determine the server's fully qualified domain name, using 192.168.1.4. Set the 'ServerName' directive globally to suppress this message
+
+This is the default welcome page used to test the correct operation of the Apache2 server after installation on Ubuntu systems. It is based on the equivalent page on Debian, from which the Ubuntu Apache packaging is derived. If you can read this page, it means that the Apache HTTP server installed at this site is working properly. You should replace this file (located at /var/www/html/index.html) before continuing to operate your HTTP server.
+
+
+### DEB packages Installation (Debian,  Ubuntu)
+
+You’ll have to manually append the following lines in your /etc/apt/sources.list file :
+
+deb http://dl.ajaxplorer.info/repos/apt stable main
+deb-src http://dl.ajaxplorer.info/repos/apt stable main
+NOTE : If you want to install the “dev” release, you can use the deb “testing” distribution instead of “stable”, which would change the sources.list entry to
+
+deb http://dl.ajaxplorer.info/repos/apt testing main
+deb-src http://dl.ajaxplorer.info/repos/apt testing main
+Then you have to install the public key using the following command :
+
+wget -O - http://dl.ajaxplorer.info/repos/charles@ajaxplorer.info.gpg.key | sudo apt-key add -
+Finally, update the apt-get database and install pydio :
+
+sudo apt-get update
+sudo apt-get install pydio
+Copy the apache config sample :
+
+ sudo cp /usr/share/doc/pydio/apache2.sample.conf /etc/apache2/sites-available/pydio.conf
+ sudo a2ensite pydio
+ # Enable mod_rewrite
+ sudo a2enmod rewrite
+ # On Ubuntu 14, you may have to manually enable mcrypt
+ php5enmod mcrypt
+Now restart Apache, then open http://localhost/pydio.
+When you are asked for updating the .htaccess file at the end of the install, you’ll find the file under /usr/share/pydio/.htaccess
+
+
+Pydio recommends to disable the output buffering of PHP for improved performances. When doing a fresh install, you should get the following message:
+
+you should disable php output_buffering for better performances with pydio.
+------------------------------------------------------------------------
+
+In order to do that on Ubuntu using Apache2:
+
+In /etc/php5/apache2/php.ini find this line:
+
+
+    output_buffering = 4096
+
+And replace it by:
+
+    output_buffering = Off
+
+
+
+
+
+> Written with [StackEdit](https://stackedit.io/).
