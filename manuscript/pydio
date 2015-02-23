@@ -82,10 +82,11 @@ We need to modify the following file:
     “/etc/apache2/ports.conf” 
 If you just change the port or add more ports here, you will likely also
 have to change the VirtualHost statement in
-
 */etc/apache2/sites-enabled/000-default.conf*
 
     Listen 8080
 
 
-> Written with [StackEdit](https://stackedit.io/).
+To restart Apache:
+
+    service apache2 restart
