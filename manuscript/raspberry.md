@@ -314,3 +314,144 @@ Scan to find out what WiFi network(s) are detected
              * Capabilities: 16-PTKSA-RC (0x000c)
         Extended supported rates: 6.0 9.0 12.0 48.0 
     ---- truncated ----
+
+
+The 2 important pieces of information from the above are the **SSID** and the security protocol (WPA/WPA2 vs WEP). The SSID from the above example is blackMOREOps. **The security protocol is RSN,** also commonly referred to as WPA2. The security protocol is important because it determines what tool you use to connect to the network.
+
+
+Step 6: Generate a wpa/wpa2 configuration file
+----------------------------------------------
+
+Now we will generate a configuration file for wpa_supplicant that contains the pre-shared key (“passphrase“) for the WiFi network.
+
+    root@kali:~# wpa_passphrase blackMOREOps >> /etc/wpa_supplicant.conf
+    abcd1234
+    root@kali:~#
+
+(where 'abcd1234' was the Network password)
+wpa_passphrase uses SSID as a string, that means you need to type in the passphrase for the WiFi network blackMOREOps after you run the command.
+
+
+wpa_passphrase will create the necessary configuration entries based on your input. Each new network will be added as a new configuration (it wont replace existing configurations) in the configurations file /etc/wpa_supplicant.conf.
+
+root@kali:~# cat /etc/wpa_supplicant.conf 
+# reading passphrase from stdin
+network={
+ ssid="blackMOREOps"
+ #psk="abcd1234"
+ psk=42e1cbd0f7fbf3824393920ea41ad6cc8528957a80a404b24b5e4461a31c820c
+}
+root@kali:~# 
+ 
+
+Step 7: Connect to WPA/WPA2 WiFi network – WiFi network from command line
+Now that we have the configuration file, we can use it to connect to the WiFi network. We will be using wpa_supplicant to connect. Use the following command
+
+    root@kali:~# wpa_supplicant -B -D wext -i wlan0 -c /etc/wpa_supplicant.conf
+   
+
+Where,
+
+ - B means run wpa_supplicant in the background
+ - D specifies the wireless driver. wext is the generic driver
+ - c specifies the path for the configuration file.
+
+Use the iw command to verify that you are indeed connected to the SSID.
+
+    root@kali:~# iw wlan0 link
+    Connected to 9c:97:00:aa:11:33 (on wlan0)
+        SSID: blackMOREOps
+        freq: 2412
+        RX: 26951 bytes (265 packets)
+        TX: 1400 bytes (14 packets)
+        signal: -51 dBm
+        tx bitrate: 6.5 MBit/s MCS 0
+    
+        bss flags:    short-slot-time
+        dtim period:    0
+        beacon int:    100
+
+ 
+
+Step 8: Get an IP using dhclient
+--------------------------------
+
+Until step 7, we’ve spent time connecting to the WiFi network. Now use dhclient to get an IP address by DHCP
+
+    root@kali:~# dhclient wlan0
+    Reloading /etc/samba/smb.conf: smbd only.
+    root@kali:~#
+
+You can use ip or ifconfig command to verify the IP address assigned by DHCP. The IP address is 10.0.0.4 from below.
+
+    root@kali:~# ip addr show wlan0
+    4: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP qlen 1000
+        link/ether 00:60:64:37:4a:30 brd ff:ff:ff:ff:ff:ff
+        inet 10.0.0.4/24 brd 10.0.0.255 scope global wlan0
+           valid_lft forever preferred_lft forever
+        inet6 fe80::260:64ff:fe37:4a30/64 scope link 
+           valid_lft forever preferred_lft forever
+    root@kali:~# 
+
+(or)
+
+    root@kali:~# ifconfig wlan0
+    wlan0 Link encap:Ethernet HWaddr 00:60:64:37:4a:30 
+     inet addr:10.0.0.4 Bcast:10.0.0.255 Mask:255.255.255.0
+     inet6 addr: fe80::260:64ff:fe37:4a30/64 Scope:Link
+     UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
+     RX packets:23868 errors:0 dropped:0 overruns:0 frame:0
+     TX packets:23502 errors:0 dropped:0 overruns:0 carrier:0
+     collisions:0 txqueuelen:1000 
+     RX bytes:22999066 (21.9 MiB) TX bytes:5776947 (5.5 MiB)
+    root@kali:~# 
+
+Add default routing rule.The last configuration step is to make sure that you have the proper routing rules.
+
+    root@kali:~# ip route show 
+    default via 10.0.0.138 dev wlan0 
+    10.0.0.0/24 dev wlan0  proto kernel  scope link  src 10.0.0.4 
+
+ 
+
+Connect to WiFi network in Linux from command line - Check Routing and DHCP - blackMORE Ops - 8
+
+ 
+
+Step 9: Test connectivity
+-------------------------
+
+Ping Google’s IP to confirm network connection (or you can just browse?)
+
+    root@kali:~# ping 8.8.8.8
+    PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+    64 bytes from 8.8.8.8: icmp_req=3 ttl=42 time=265 ms
+    64 bytes from 8.8.8.8: icmp_req=4 ttl=42 time=176 ms
+    64 bytes from 8.8.8.8: icmp_req=5 ttl=42 time=174 ms
+    64 bytes from 8.8.8.8: icmp_req=6 ttl=42 time=174 ms
+    ^C
+    --- 8.8.8.8 ping statistics ---
+    6 packets transmitted, 4 received, 33% packet loss, time 5020ms
+    rtt min/avg/max/mdev = 174.353/197.683/265.456/39.134 ms
+    root@kali:~# 
+
+ 
+
+Summary
+-------
+
+This is a very detailed and long guide. Here is a short summary of all the things you need to do in just few line.
+
+    root@kali:~# iw dev
+    root@kali:~# ip link set wlan0 up
+    root@kali:~# iw wlan0 scan
+    root@kali:~# wpa_passphrase blackMOREOps >> /etc/wpa_supplicant.conf
+    root@kali:~# wpa_supplicant -i wlan0 -c /etc/wpa_supplicant.conf
+    root@kali:~# iw wlan0 link
+    root@kali:~# dhclient wlan0
+    root@kali:~# ping 8.8.8.8
+    (Where wlan0 is wifi adapter and blackMOREOps is SSID)
+    (Add Routing manually)
+    root@kali:~# ip route add default via 10.0.0.138 dev wlan0
+
+At the end of it, you should be able to connect to WiFi network. Depending on the Linux distro you are using and how things go, your commands might be slightly different. Edit commands as required to meet your needs.
