@@ -334,17 +334,18 @@ wpa_passphrase uses SSID as a string, that means you need to type in the passphr
 
 wpa_passphrase will create the necessary configuration entries based on your input. Each new network will be added as a new configuration (it wont replace existing configurations) in the configurations file /etc/wpa_supplicant.conf.
 
-root@kali:~# cat /etc/wpa_supplicant.conf 
-# reading passphrase from stdin
-network={
- ssid="blackMOREOps"
- #psk="abcd1234"
- psk=42e1cbd0f7fbf3824393920ea41ad6cc8528957a80a404b24b5e4461a31c820c
-}
-root@kali:~# 
+    root@kali:~# cat /etc/wpa_supplicant.conf     
+    network={
+     ssid="blackMOREOps"
+     #psk="abcd1234"     psk=42e1cbd0f7fbf3824393920ea41ad6cc8528957a80a404b24b5e4461a31c820c
+    }
+    root@kali:~# 
+
  
 
-Step 7: Connect to WPA/WPA2 WiFi network – WiFi network from command line
+Step 7: Connect to WPA/WPA2 WiFi network
+----------------------------------------
+
 Now that we have the configuration file, we can use it to connect to the WiFi network. We will be using wpa_supplicant to connect. Use the following command
 
     root@kali:~# wpa_supplicant -B -D wext -i wlan0 -c /etc/wpa_supplicant.conf
