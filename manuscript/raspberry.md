@@ -227,7 +227,10 @@ Install WIfi adapter
 --------------------
 
 The basic documentation can be found [here](http://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/)
-Step 1: Find available WiFi adapters – WiFi network from command line
+
+Step 1: Find available WiFi adapters
+------------------------------------
+
 This actually help .. I mean you need to know your WiFi device name before you go an connect to a WiFi network. So just use the following command that will list all the connected WiFi adapters in your Linux machines.
 
     root@kali:~# iw dev
@@ -241,11 +244,25 @@ Let me explain the output:
 
 This system has 1 physical WiFi adapters.
 
-D
-
-    esignated name: phy#1
+    Designated name: phy#1
     Device names: wlan0
     Interface Index: 4. Usually as per connected ports (which can be an USB port).
     Type: Managed. 
 
 Type specifies the operational mode of the wireless devices. managed means the device is a WiFi station or client that connects to an access point.
+
+Step 2: Check device status
+---------------------------
+
+By this time many of you are thinking, why two network devices. The reason I am using two is because I would like to show how a connected and disconnected device looks like side by side. Next command will show you exactly that.
+
+You can check that if the wireless device is up or not using the following command:
+
+    root@kali:~# ip link show wlan0
+    4: wlan0: <BROADCAST,MULTICAST> mtu 1500 qdisc mq state DOWN mode DORMANT qlen 1000
+        link/ether 00:60:64:37:4a:30 brd ff:ff:ff:ff:ff:ff
+    root@kali:~# 
+
+As you can already see, I got once interface (wlan0) as state UP and wlan1 as state DOWN.
+
+Look for the word “UP” inside the brackets in the first line of the output.
