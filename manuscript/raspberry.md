@@ -233,6 +233,34 @@ Step 1: Find available WiFi adapters
 
 This actually help .. I mean you need to know your WiFi device name before you go an connect to a WiFi network. So just use the following command that will list all the connected WiFi adapters in your Linux machines.
 
+But first install the necessary packages:
+
+sudo -i 
+apt-get install libnl-3-dev libnl-genl-3-dev
+apt-get install iw
+
+SSID : TP-LINK_681998
+
+sudo nano /etc/network/interfaces
+
+    auto lo
+    
+    iface lo inet loppback
+    iface eth0 inet dhcp
+    allow-hotplug wlan0
+    
+    auto wlan0
+    iface wlan0 inet dhcp
+    
+    wpa-ssid "TP-LINK_681998"
+    wpa-psk "214A300001192"
+
+Then reboot
+
+    shutdown -r now
+
+
+
     root@kali:~# iw dev
     phy#1
         Interface wlan0
