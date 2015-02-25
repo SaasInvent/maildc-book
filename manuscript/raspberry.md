@@ -241,17 +241,30 @@ apt-get install iw
 
 SSID : TP-LINK_681998
 
-sudo nano /etc/network/interfaces
+Your  /etc/network/interfaces should look like this
 
-    auto lo
-    
-    iface lo inet loppback
-    iface eth0 inet dhcp
-    allow-hotplug wlan0
-    
     auto wlan0
-    iface wlan0 inet dhcp
     
+    iface lo inet loopback
+    iface eth0 inet dhcp
+    
+    allow-hotplug wlan0
+    iface wlan0 inet manual
+    wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+    iface default inet dhcp
+    
+Put the following information into your wpa_supplicant.conf
+
+
+network={
+ssid="TP-LINK_681998"
+psk="214A300001192"
+proto=RSN
+key_mgmt=WPA-PSK
+pairwise=CCMP
+auth_alg=OPEN
+}
+
     wpa-ssid "TP-LINK_681998"
     wpa-psk "214A300001192"
 
