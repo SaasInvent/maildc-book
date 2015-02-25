@@ -226,20 +226,8 @@ dmesg|egrep -i 'serial|ttys'
 Install WIfi adapter
 --------------------
 
-The basic documentation can be found [here](http://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/)
+The basic documentation can be found [here](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-3-network-setup/setting-up-wifi-with-occidentalis) 
 
-Step 1: Find available WiFi adapters
-------------------------------------
-
-This actually help .. I mean you need to know your WiFi device name before you go an connect to a WiFi network. So just use the following command that will list all the connected WiFi adapters in your Linux machines.
-
-But first install the necessary packages:
-
-sudo -i 
-apt-get install libnl-3-dev libnl-genl-3-dev
-apt-get install iw
-
-SSID : TP-LINK_681998
 
 Your  /etc/network/interfaces should look like this
 
@@ -255,7 +243,7 @@ Your  /etc/network/interfaces should look like this
         wpa-psk "214A300001192"
     
 
-Then reboot
+Be sure to change your ssid and password! Then reboot
 
     shutdown -r now
 
