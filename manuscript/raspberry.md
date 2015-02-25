@@ -223,4 +223,29 @@ dmesg|egrep -i 'serial|ttys'
 [Simple script](https://github.com/lurch/rpi-serial-console) to easily enable & disable the Raspberry Pi's serial console. **Disabling the serial console is required if you want to use the Raspberry Pi's serial port (UART) to talk to other devices** e.g. microcontrollers (see http://elinux.org/RPi_Serial_Connection for more information).
 
 
+Install WIfi adapter
+--------------------
 
+The basic documentation can be found [here](http://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/)
+Step 1: Find available WiFi adapters – WiFi network from command line
+This actually help .. I mean you need to know your WiFi device name before you go an connect to a WiFi network. So just use the following command that will list all the connected WiFi adapters in your Linux machines.
+
+    root@kali:~# iw dev
+    phy#1
+        Interface wlan0
+            ifindex 4
+            type managed
+    root@kali:~#
+
+Let me explain the output:
+
+This system has 1 physical WiFi adapters.
+
+D
+
+    esignated name: phy#1
+    Device names: wlan0
+    Interface Index: 4. Usually as per connected ports (which can be an USB port).
+    Type: Managed. 
+
+Type specifies the operational mode of the wireless devices. managed means the device is a WiFi station or client that connects to an access point.
