@@ -266,3 +266,51 @@ You can check that if the wireless device is up or not using the following comma
 As you can already see, I got once interface (wlan0) as state UP and wlan1 as state DOWN.
 
 Look for the word “UP” inside the brackets in the first line of the output.
+
+Step 3: Bring up the WiFi interface
+-----------------------------------
+
+Use the following command to bring up the WiFI interface
+
+    root@kali:~# ip link set wlan0 up
+If you run the show link command again, you can tell that wlan1 is now UP.
+
+    root@kali:~# ip link show wlan0
+    4: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DORMANT qlen 1000
+        link/ether 00:60:64:37:4a:30 brd ff:ff:ff:ff:ff:ff
+    root@kali:~# 
+
+Step 4: Check the connection status
+-----------------------------------
+
+You can check WiFi network connection status from command line using the following command
+
+    root@kali:~# iw wlan0 link
+    Not connected.
+    root@kali:~# 
+
+Step 5: Scan to find WiFi Network
+---------------------------------
+
+Scan to find out what WiFi network(s) are detected
+
+    root@kali:~# iw wlan0 scan
+    BSS 9c:97:26:de:12:37 (on wlan0)
+        TSF: 5311608514951 usec (61d, 11:26:48)
+        freq: 2462
+        beacon interval: 100
+        capability: ESS Privacy ShortSlotTime (0x0411)
+        signal: -53.00 dBm 
+        last seen: 104 ms ago
+        Information elements from Probe Response frame:
+        SSID: blackMOREOps
+        Supported rates: 1.0* 2.0* 5.5* 11.0* 18.0 24.0 36.0 54.0 
+        DS Parameter set: channel 11
+        ERP: Barker_Preamble_Mode
+        RSN:     * Version: 1
+             * Group cipher: CCMP
+             * Pairwise ciphers: CCMP
+             * Authentication suites: PSK
+             * Capabilities: 16-PTKSA-RC (0x000c)
+        Extended supported rates: 6.0 9.0 12.0 48.0 
+    ---- truncated ----
