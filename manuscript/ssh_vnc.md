@@ -16,7 +16,7 @@ The first thing that needs to be installed is VNC Server.  Make sure you are con
 
 Type the following to install the VNC Server:
 
-    sudo apt-get install tightvncserver
+    apt-get install tightvncserver
 
 You will be asked if you are sure you want to continue. Press "Y" to continue.
 
@@ -27,7 +27,7 @@ At this point I would advise writing a script that you can run whenever you want
 
 Type the following to open the nano editor:
 
-    sudo nano /etc/init.d/vncserver
+    vi /etc/init.d/vncserver
 
 Enter the following script into the editor:
 
