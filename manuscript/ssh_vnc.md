@@ -131,32 +131,34 @@ The conf file needs to be edited to be able to set up the outgoing email setting
 
 Add the following lines to the end of the file:
 
-root=postmaster 
-mailhub=smtp.gmail.com:587
-hostname=raspberrypi
-AuthUser=myemailaddress
-AuthPass=myemailpassword
-UseSTARTTLS=YE
+    root=postmaster 
+    mailhub=smtp.gmail.com:587
+    UseSTARTTLS=YES
+    FromLineOverride=YES
+    AuthUser=login_gmail
+    AuthPass=password_gmail
 
-The mailhub line needs to be replaced with your outgoing smtp server. The bit that says myemailaddress needs to be replaced with your email address and myemailpassword needs to be replaced with the password from your email address.
-
-Press CTRL + O and CTRL + X to save and exit the file.
 
 Now you will need to edit the file /etc/ssmtp/revaliases. To do this type the following:
 
-sudo nano /etc/ssmtp/revaliases
+    cd /etc/ssmptp
+    vi revaliases
 
-Add the following line somewhere within the file:
+Add the following at the end of the file:
 
-pi:pi@everydaylinuxuser.com:smtp.gmail.com:587
+    root:your_gmail_address:smtp.gmail.com:587
+    pi:your_gmail_address:smtp.gmail.com:587
+  
 
-Replace the bit that says pi@everydaylinuxuser.com with a user and host name that you want emails to look like they come from. Replace the smtp.gmail.com:587 with the smtp details of your outgoing mail server.
-
-Again save the file by pressing CTRL + O and CTRL + X.
 
 Change the permissions on the ssmtp.conf file to enable emails to be sent:
 
-sudo chmod 774 /etc/ssmtp/ssmtp.conf
+    cd /etc/ssmptp
+    chmod 774 ssmtp.conf
+
+In order to be able to install emails install the following packet:
+
+    apt-get install mailutils
 
 Now create a file called sendmyIP.sh by typing the following:
 
