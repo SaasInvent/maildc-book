@@ -178,3 +178,20 @@ Change the permissions to enable the script to run by typing the following:
 Now every time your PI starts it should send you an email with the internal IP address for the PI.
 
 Another option is to set the IP address for the Raspberry PI as static on dhcp server : yes there is something like a static dhcp address!!
+
+
+Get your External IP address
+----------------------------
+
+When you connect to the internet you will actually be using an external IP address. 
+
+I followed [this guide](http://www.if-not-true-then-false.com/2010/linux-get-ip-address/) to get an external IP address.
+
+I installed lynx first by running the following in the command line:
+
+    apt-get install lynx
+
+Then I ran the following command to get the external IP address.
+
+    lynx --dump http://ipecho.net/plain
+
