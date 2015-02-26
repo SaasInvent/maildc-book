@@ -100,13 +100,15 @@ There are two things you can do. The first is to SSH onto the Raspberry PI and r
 
 My preferred method is to use SSH. Simply connect via SSH to the Raspberry PI and then enter the following command when you want to VNC onto the Raspberry PI:
 
-    sudo /etc/init.d/vncserver start
+    cd /etc/init.d
+    ./vncserver start
 
 I think this is the best way as it only leaves VNC open for connection when you actually plan to use it as opposed to leaving it open all the time.
 
 If however you want to always be able to connect via VNC you can run the following command into the terminal just once and the VNC server will start when the Raspberry PI starts:
 
-sudo update-rc.d vncserver defaults
+    update-rc.d vncserver defaults
+
 
 Get your IP address sent to your email account
 ----------------------------------------------
@@ -119,17 +121,23 @@ The next bit is entirely optional but will help you if you need your PI's IP add
 
 First things first you will need a piece of software called SSMTP installed. Connect to the Raspberry PI via SSH and enter the following:
 
-sudo apt-get install ssmtp
+    sudo -i
+    apt-get install ssmtp
 
 The conf file needs to be edited to be able to set up the outgoing email settings. Type the following:
 
-sudo nano /etc/ssmtp/ssmtp.conf
+    cd /etc/ssmtp
+    vi ssmtp.conf
 
 Add the following lines to the end of the file:
 
 root=postmaster 
 mailhub=smtp.gmail.com:587
-hostname=raspberrypiAuthUser=myemailaddressAuthPass=myemailpasswordUseSTARTTLS=YE
+hostname=raspberrypi
+AuthUser=myemailaddress
+AuthPass=myemailpassword
+UseSTARTTLS=YE
+
 The mailhub line needs to be replaced with your outgoing smtp server. The bit that says myemailaddress needs to be replaced with your email address and myemailpassword needs to be replaced with the password from your email address.
 
 Press CTRL + O and CTRL + X to save and exit the file.
