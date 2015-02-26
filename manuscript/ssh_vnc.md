@@ -138,7 +138,7 @@ Add the following lines to the end of the file:
     AuthUser=login_gmail
     AuthPass=password_gmail
 
-
+*Enter user and password without quotes!*
 Now you will need to edit the file /etc/ssmtp/revaliases. To do this type the following:
 
     cd /etc/ssmptp
@@ -162,20 +162,19 @@ In order to be able to install emails install the following packet:
 
 Now create a file called sendmyIP.sh by typing the following:
 
-sudo nano /etc/profile.d/sendmyip.sh
+    vi  /etc/profile.d/sendmyip.sh
 
 Enter the following into the editor:
 
-ifconfig | mail -s "Your PI IP " emailaddresstosendmailto.com
+    ifconfig | mail -s "Your PI IP " your_email_address
 
-Replace the emailaddresstosendmailto.com to your email address.
-
-Press CTRL + O and then CTRL + X to save and exit the file.
 
 Change the permissions to enable the script to run by typing the following:
 
-sudo chmod +x /etc/profile.d/sendmyip.sh
+    cd /etc/profile.d
+    chmod +x sendmyip.sh
+
  
 Now every time your PI starts it should send you an email with the internal IP address for the PI.
 
-Another option is to set the IP address for the Raspberry PI as static. Follow this guide to find out how to set a static IP address.
+Another option is to set the IP address for the Raspberry PI as static on dhcp server : yes there is something like a static dhcp address!!
