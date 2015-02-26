@@ -223,7 +223,7 @@ dmesg|egrep -i 'serial|ttys'
 [Simple script](https://github.com/lurch/rpi-serial-console) to easily enable & disable the Raspberry Pi's serial console. **Disabling the serial console is required if you want to use the Raspberry Pi's serial port (UART) to talk to other devices** e.g. microcontrollers (see http://elinux.org/RPi_Serial_Connection for more information).
 
 
-Install WIfi adapter
+Install Wifi adapter
 --------------------
 
 The basic documentation can be found [here](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-3-network-setup/setting-up-wifi-with-occidentalis) 
