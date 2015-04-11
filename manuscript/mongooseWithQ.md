@@ -35,7 +35,7 @@ Here's some example code:
 	       console.log err
 
 
-This is the example code from WKBudateInvoice(req) :
+This is the example code from WKB.updateInvoice(req) :
 
   
 
